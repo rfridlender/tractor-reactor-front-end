@@ -1,0 +1,33 @@
+@mixin expand {
+  width: 100%;
+  height: 100%;
+}
+
+$color-1: #fefae0;
+$color-2: #dda15e;
+$color-3: #bc6c25;
+$color-4: #606c38;
+$color-5: #283618;
+
+*, *:before, *:after {
+  line-height: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+:root {
+  @include expand();
+  background-color: $color-1;
+  body {
+    @include expand();
+    #root {
+      @include expand();
+      display: flex;
+      flex-flow: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+}
