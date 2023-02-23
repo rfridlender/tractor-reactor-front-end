@@ -1,5 +1,5 @@
-// services
 import * as tokenService from './tokenService'
+
 import { addPhoto as addProfilePhoto } from './profileService'
 
 // types

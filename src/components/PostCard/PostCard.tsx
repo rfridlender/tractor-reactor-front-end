@@ -1,4 +1,11 @@
-import { Post } from '../../types/models'
+import { Post, User } from '../../types/models'
+import { AddCommentFormData } from '../../types/forms'
+
+import * as postService from '../../services/postService'
+
+import { useState } from 'react'
+
+import CommentsList from '../CommentsList/CommentsList'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTractor } from '@fortawesome/free-solid-svg-icons'
@@ -6,37 +13,36 @@ import { faTractor } from '@fortawesome/free-solid-svg-icons'
 import styles from './PostCard.module.scss'
 
 import defaultPhoto from '../../assets/icons/profile.png'
+import translateDate from '../../helpers/translateDate'
+
 
 interface PostCardProps {
   post: Post;
+  user: User | null;
 }
 
-// export interface Post {
-//   id: number;
-//   variety: string;
-//   brand: string;
-//   design: string;
-//   horsepower: number;
-//   reaction: string;
-//   rating: number;
-//   authorId: number;
-//   photo?: string;
-//   createdAt: string;
-//   updatedAt: string;
-//   comments: Comment[];
-//   author: Profile
-// }
-
 const PostCard = (props: PostCardProps): JSX.Element => {
-  const { post } = props
+  const { user } = props
 
-  const createdAtValue: number = new Date(post.createdAt).valueOf()
-  const nowValue: number = new Date().valueOf()
-  const minuteDifference: number = (nowValue - createdAtValue) / 60000
-  const createdAtAgo: string = 
-    minuteDifference <= 60 ? `${Math.floor(minuteDifference)}m ago` :
-    minuteDifference / 60 <= 24 ? `${Math.floor(minuteDifference / 60)}h ago` :
-    `${Math.floor(minuteDifference / 60 / 24)}d ago`
+  const [post, setPost] =useState<Post>(props.post)
+  const [formData, setFormData] = useState<AddCommentFormData>({content: ''})
+
+  const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [evt.target.name]: evt.target.value })
+  }
+
+  const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
+    evt.preventDefault()
+    try {
+      const newComment = await postService.addComment(formData, post.id)
+      setPost({...post, comments: [newComment, ...post.comments]})
+      setFormData({content: ''})
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  
+  const createdAtAgo = translateDate(post.createdAt)
 
   const ratingOptions: [ 1, 2, 3, 4, 5 ] = [ 1, 2, 3, 4, 5 ]
   
@@ -64,6 +70,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
         <div>{`${post.horsepower} HP`}</div>
       </div>
       <p>{post.reaction}</p>
+      <CommentsList post={post} user={user} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
     </article>
   )
 }

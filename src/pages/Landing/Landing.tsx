@@ -9,7 +9,7 @@ import PostCard from '../../components/PostCard/PostCard'
 import SideBar from '../../components/SideBar/SideBar'
 
 interface LandingProps {
-  user: User | null
+  user: User | null;
 }
 
 const Landing = (props: LandingProps): JSX.Element => {
@@ -19,10 +19,10 @@ const Landing = (props: LandingProps): JSX.Element => {
 
   return (
     <>
-      <SideBar />
+      <SideBar posts={data} />
       <section className={styles.container}>
         {data?.map(post => (
-          <PostCard key={post.id} post={post} />
+          <PostCard key={post.id} post={post} user={user}/>
         ))}
       </section>
     </>

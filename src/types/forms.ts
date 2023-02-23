@@ -4,6 +4,10 @@
 
 /* ---------===== auth forms =====--------- */
 
+export interface AddCommentFormData {
+  content: string;
+}
+
 export interface LoginFormData {
   email: string;
   password: string;

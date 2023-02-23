@@ -1,14 +1,10 @@
-// npm modules
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-// services
 import * as authService from '../../services/authService'
 
-// stylesheets
 import styles from './SignupForm.module.css'
 
-// types
 import { AuthFormProps } from '../../types/props'
 import { SignupFormData, PhotoFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'

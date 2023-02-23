@@ -27,7 +27,7 @@ export interface Comment {
   authorId: number;
   createdAt: string;
   updatedAt: string;
-  author: Profile;
+  author?: Profile;
 }
 
 export interface Profile {

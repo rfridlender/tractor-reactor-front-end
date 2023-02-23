@@ -1,4 +1,8 @@
-import { Post } from '../types/models'
+import { Post, Comment } from '../types/models'
+
+import { AddCommentFormData } from '../types/forms'
+
+import * as tokenService from './tokenService'
 
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/api/posts`
 
@@ -29,4 +33,20 @@ async function index(): Promise<Post[]> {
 //   }
 // }
 
-export { index }
+async function addComment(formData: AddCommentFormData, postId: number): Promise<Comment> {
+  try {
+    const res = await fetch(`${BASE_URL}/${postId}/comments`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData),
+    })
+    return await res.json()
+  } catch (error) {
+    throw(error)
+  }
+}
+
+export { index, addComment }
