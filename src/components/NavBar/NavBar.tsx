@@ -3,8 +3,11 @@ import { NavLink } from 'react-router-dom'
 import { User } from '../../types/models'
 
 import styles from './NavBar.module.scss'
-
 import logo from '../../assets/icons/logo.png'
+import defaultProfile from '../../assets/icons/profile.png'
+import ReactDOM from 'react-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome, faPerson, faSignOut, faSignOutAlt, faUserGroup } from '@fortawesome/free-solid-svg-icons'
 
 interface NavBarProps {
   user: User | null;
@@ -26,10 +29,10 @@ const NavBar = (props: NavBarProps): JSX.Element => {
           </div>
         {user ?
           <div id={styles.subnav}>
-            <div><NavLink to="/">Welcome, {user.name}</NavLink></div>
-            <div><NavLink to="/posts">Posts</NavLink></div>
-            <div><NavLink to="/profiles">Profiles</NavLink></div>
-            <div><NavLink to="" onClick={handleLogout}>Log Out</NavLink></div>
+            <div><NavLink to="/"><img src={user.profile.photo ? user.profile.photo : defaultProfile} alt="" /></NavLink></div>
+            <div><NavLink to="/posts"><FontAwesomeIcon icon={faHome} /></NavLink></div>
+            <div><NavLink to="/profiles"><FontAwesomeIcon icon={faUserGroup} /></NavLink></div>
+            <div><NavLink to="" onClick={handleLogout}><FontAwesomeIcon icon={faSignOut} /></NavLink></div>
           </div>
         :
           <div id={styles.subnav}>

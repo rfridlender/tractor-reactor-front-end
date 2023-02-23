@@ -27,7 +27,7 @@ export interface Comment {
   authorId: number;
   createdAt: string;
   updatedAt: string;
-  author: Profile
+  author: Profile;
 }
 
 export interface Profile {
@@ -42,7 +42,7 @@ export interface Profile {
 export interface User {
   name: string;
   email: string;
-  profile: { id: number };
+  profile: { id: number, photo: string };
   id: number;
   createdAt: string;
   updatedAt: string;

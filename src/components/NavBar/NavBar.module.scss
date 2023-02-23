@@ -22,7 +22,7 @@ $color-5: #283618;
   #nav {
     width: 80rem;
     height: 100%;
-    padding: 0 2rem;
+    padding: 0 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -70,7 +70,7 @@ $color-5: #283618;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 2rem;
+      gap: 1rem;
       div {
         height: 100%;
         display: flex;
@@ -84,8 +84,19 @@ $color-5: #283618;
           text-decoration: none;
           font-family: 'Arvo', serif;
           color: $color-1;
-          text-shadow: .125rem .125rem .125rem $color-5;
           transition: all .5s;
+          img {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 3rem;
+          }
+          svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            padding: .5rem;
+            border-radius: 3rem;
+            background-color: #283618;
+          }
         }
         a:hover {
           color: $color-2;
