@@ -1,5 +1,8 @@
 import { Post } from '../../types/models'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTractor } from '@fortawesome/free-solid-svg-icons'
+
 import styles from './PostCard.module.scss'
 
 import defaultPhoto from '../../assets/icons/profile.png'
@@ -27,15 +30,15 @@ interface PostCardProps {
 const PostCard = (props: PostCardProps): JSX.Element => {
   const { post } = props
 
-  const createdAtValue = new Date(post.createdAt).valueOf()
-  const nowValue = new Date().valueOf()
-  const minuteDifference = (nowValue - createdAtValue) / 60000
-  console.log(minuteDifference / 60);
-  
-  const createdAtAgo = 
+  const createdAtValue: number = new Date(post.createdAt).valueOf()
+  const nowValue: number = new Date().valueOf()
+  const minuteDifference: number = (nowValue - createdAtValue) / 60000
+  const createdAtAgo: string = 
     minuteDifference <= 60 ? `${Math.floor(minuteDifference)} minutes ago` :
     minuteDifference / 60 <= 24 ? `${Math.floor(minuteDifference / 60)} hours ago` :
     `${Math.floor(minuteDifference / 60 / 24)} days ago`
+
+  const ratingOptions: [ 1, 2, 3, 4, 5 ] = [ 1, 2, 3, 4, 5 ]
   
   return (
     <article className={styles.container}>
@@ -53,7 +56,11 @@ const PostCard = (props: PostCardProps): JSX.Element => {
       </div>
       <div id={styles.specs}>
         <div>{post.variety}</div>
-        <div>{post.rating}</div>
+        <div id={styles.rating}>
+          {ratingOptions.map((rating: number): JSX.Element => (
+            <FontAwesomeIcon className={rating <= post.rating ? styles.rated : styles.unrated} key={rating} icon={faTractor} />
+          ))}
+        </div>
         <div>{`${post.horsepower} HP`}</div>
       </div>
       <p>{post.reaction}</p>

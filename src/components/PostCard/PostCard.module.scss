@@ -70,6 +70,20 @@ $color-5: #283618;
   }
   #specs {
     color: $color-2;
+    #rating {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: .125rem;
+      .rated {
+        color: $color-2;
+      }
+      .unrated {
+        color: $color-1;
+        opacity: .5;
+        -webkit-text-stroke: 2px $color-4;
+      }
+    }
   }
   p {
     border: none;

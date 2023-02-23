@@ -5,9 +5,8 @@ import { User } from '../../types/models'
 import styles from './NavBar.module.scss'
 import logo from '../../assets/icons/logo.png'
 import defaultProfile from '../../assets/icons/profile.png'
-import ReactDOM from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faPerson, faSignOut, faSignOutAlt, faUserGroup } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faSignOut, faUserGroup } from '@fortawesome/free-solid-svg-icons'
 
 interface NavBarProps {
   user: User | null;
