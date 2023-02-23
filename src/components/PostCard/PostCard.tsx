@@ -34,9 +34,9 @@ const PostCard = (props: PostCardProps): JSX.Element => {
   const nowValue: number = new Date().valueOf()
   const minuteDifference: number = (nowValue - createdAtValue) / 60000
   const createdAtAgo: string = 
-    minuteDifference <= 60 ? `${Math.floor(minuteDifference)} minutes ago` :
-    minuteDifference / 60 <= 24 ? `${Math.floor(minuteDifference / 60)} hours ago` :
-    `${Math.floor(minuteDifference / 60 / 24)} days ago`
+    minuteDifference <= 60 ? `${Math.floor(minuteDifference)}m ago` :
+    minuteDifference / 60 <= 24 ? `${Math.floor(minuteDifference / 60)}h ago` :
+    `${Math.floor(minuteDifference / 60 / 24)}d ago`
 
   const ratingOptions: [ 1, 2, 3, 4, 5 ] = [ 1, 2, 3, 4, 5 ]
   

@@ -6,6 +6,7 @@ import { useQuery } from 'react-query'
 import * as postService from '../../services/postService'
 
 import PostCard from '../../components/PostCard/PostCard'
+import SideBar from '../../components/SideBar/SideBar'
 
 interface LandingProps {
   user: User | null
@@ -17,11 +18,14 @@ const Landing = (props: LandingProps): JSX.Element => {
   const { data, error, isLoading, isError} = useQuery('profiles', postService.index)
 
   return (
-    <main className={styles.container}>
-      {data?.map(post => (
-        <PostCard key={post.id} post={post} />
-      ))}
-    </main>
+    <>
+      <SideBar />
+      <section className={styles.container}>
+        {data?.map(post => (
+          <PostCard key={post.id} post={post} />
+        ))}
+      </section>
+    </>
   )
 }
 

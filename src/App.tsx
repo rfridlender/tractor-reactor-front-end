@@ -8,6 +8,7 @@ import ChangePassword from './pages/ChangePassword/ChangePassword'
 import Profiles from './pages/Profiles/Profiles'
 
 import NavBar from './components/NavBar/NavBar'
+import SideBar from './components/SideBar/SideBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 import * as authService from './services/authService'
@@ -32,21 +33,24 @@ function App(): JSX.Element {
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
-      <Routes>
-        <Route path="/" element={<Landing user={user} />} />
-        <Route path="/signup" element={<Signup handleAuthEvt={handleAuthEvt} />} />
-        <Route path="/login" element={<Login handleAuthEvt={handleAuthEvt} />} />
-        <Route path="/profiles" element={
-          <ProtectedRoute user={user}>
-            <Profiles />
-          </ProtectedRoute>
-        } />
-        <Route path="/change-password" element={
-          <ProtectedRoute user={user}>
-            <ChangePassword handleAuthEvt={handleAuthEvt} />
-          </ProtectedRoute>
-        } />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<Landing user={user} />} />
+          <Route path="/signup" element={<Signup handleAuthEvt={handleAuthEvt} />} />
+          <Route path="/login" element={<Login handleAuthEvt={handleAuthEvt} />} />
+          <Route path="/profiles" element={
+            <ProtectedRoute user={user}>
+              <Profiles />
+            </ProtectedRoute>
+          } />
+          <Route path="/change-password" element={
+            <ProtectedRoute user={user}>
+              <ChangePassword handleAuthEvt={handleAuthEvt} />
+            </ProtectedRoute>
+          } />
+        </Routes>
+
+      </main>
     </>
   )
 }
