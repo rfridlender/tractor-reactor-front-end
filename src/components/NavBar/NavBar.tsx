@@ -29,9 +29,9 @@ const NavBar = (props: NavBarProps): JSX.Element => {
           </div>
         {user ?
           <div id={styles.subnav}>
-            <div><NavLink to="/"><img src={user.profile.photo ? user.profile.photo : defaultProfile} alt="" /></NavLink></div>
             <div><NavLink to="/posts"><FontAwesomeIcon icon={faHome} /></NavLink></div>
             <div><NavLink to="/profiles"><FontAwesomeIcon icon={faUserGroup} /></NavLink></div>
+            <div><NavLink to="/"><img src={user.profile.photo ? user.profile.photo : defaultProfile} alt="" /></NavLink></div>
             <div><NavLink to="" onClick={handleLogout}><FontAwesomeIcon icon={faSignOut} /></NavLink></div>
           </div>
         :

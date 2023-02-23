@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
+import { useQuery, useQueryClient } from 'react-query'
 
 import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
@@ -19,21 +20,8 @@ import { User, Profile } from './types/models'
 
 function App(): JSX.Element {
   const navigate = useNavigate()
-  
-  const [user, setUser] = useState<User | null>(authService.getUser())
-  const [profiles, setProfiles] = useState<Profile[]>([])
 
-  useEffect((): void => {
-    const fetchProfiles = async (): Promise<void> => {
-      try {
-        const profileData: Profile[] = await profileService.getAllProfiles()
-        setProfiles(profileData)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    if (user) fetchProfiles()
-  }, [user])
+  const [user, setUser] = useState<User | null>(authService.getUser())
 
   const handleLogout = (): void => {
     authService.logout()
@@ -50,30 +38,18 @@ function App(): JSX.Element {
       <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Landing user={user} />} />
-        <Route
-          path="/signup"
-          element={<Signup handleAuthEvt={handleAuthEvt} />}
-        />
-        <Route
-          path="/login"
-          element={<Login handleAuthEvt={handleAuthEvt} />}
-        />
-        <Route
-          path="/profiles"
-          element={
-            <ProtectedRoute user={user}>
-              <Profiles profiles={profiles} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/change-password"
-          element={
-            <ProtectedRoute user={user}>
-              <ChangePassword handleAuthEvt={handleAuthEvt} />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/signup" element={<Signup handleAuthEvt={handleAuthEvt} />} />
+        <Route path="/login" element={<Login handleAuthEvt={handleAuthEvt} />} />
+        <Route path="/profiles" element={
+          <ProtectedRoute user={user}>
+            <Profiles />
+          </ProtectedRoute>
+        } />
+        <Route path="/change-password" element={
+          <ProtectedRoute user={user}>
+            <ChangePassword handleAuthEvt={handleAuthEvt} />
+          </ProtectedRoute>
+        } />
       </Routes>
     </>
   )

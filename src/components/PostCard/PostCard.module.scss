@@ -1,0 +1,47 @@
+$color-1: #fefae0;
+$color-2: #dda15e;
+$color-3: #bc6c25;
+$color-4: #606c38;
+$color-5: #283618;
+
+
+.container {
+  border: 1px solid red;
+  background-color: $color-4;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem;
+  border-radius: .25rem;
+  header {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid blue;
+    #author {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: .5rem;
+      border: 1px solid green;
+      img {
+        width: 3rem;
+        height: 3rem;
+        object-fit: cover;
+        border-radius: 3rem;
+      }
+      div {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+      }
+    }
+  }
+}
