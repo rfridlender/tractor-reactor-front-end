@@ -1,0 +1,11 @@
+.container {
+  width: 50%;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  > * {
+    box-shadow: 0 .125rem .25rem black;
+  }
+}

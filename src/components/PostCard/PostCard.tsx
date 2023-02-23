@@ -29,11 +29,13 @@ const PostCard = (props: PostCardProps): JSX.Element => {
 
   const createdAtValue = new Date(post.createdAt).valueOf()
   const nowValue = new Date().valueOf()
-  const hourDifference = (nowValue - createdAtValue) / 600000
-  const createdAtAgo = hourDifference <= 12 ?
-    `${Math.floor(hourDifference)} hours ago` :
-    hourDifference <= 24 ? `Over 12 hours ago` :
-    `${Math.floor(hourDifference / 24)} days ago`
+  const minuteDifference = (nowValue - createdAtValue) / 60000
+  console.log(minuteDifference / 60);
+  
+  const createdAtAgo = 
+    minuteDifference <= 60 ? `${Math.floor(minuteDifference)} minutes ago` :
+    minuteDifference / 60 <= 24 ? `${Math.floor(minuteDifference / 60)} hours ago` :
+    `${Math.floor(minuteDifference / 60 / 24)} days ago`
   
   return (
     <article className={styles.container}>
@@ -44,13 +46,15 @@ const PostCard = (props: PostCardProps): JSX.Element => {
         </div>
         <div>{createdAtAgo}</div>
       </header>
-      {post.photo && <img src={post.photo} alt={`${post.author.name}'s ${post.brand} Tractor`} />}
-      <div>
-        <div>{post.variety}</div>
+      {post.photo && <img id={styles.photo} src={post.photo} alt={`${post.author.name}'s ${post.brand} Tractor`} />}
+      <div id={styles.tractor}>
         <div>{post.brand}</div>
         <div>{post.design}</div>
-        <div>{post.horsepower}</div>
+      </div>
+      <div id={styles.specs}>
+        <div>{post.variety}</div>
         <div>{post.rating}</div>
+        <div>{`${post.horsepower} HP`}</div>
       </div>
       <p>{post.reaction}</p>
     </article>

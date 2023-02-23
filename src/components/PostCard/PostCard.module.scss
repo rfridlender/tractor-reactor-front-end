@@ -6,29 +6,32 @@ $color-5: #283618;
 
 
 .container {
-  border: 1px solid red;
-  background-color: $color-4;
+  width: 100%;
+  background-color: $color-5;
+  color: $color-1;
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
-  gap: .5rem;
-  padding: .5rem;
-  border-radius: .25rem;
+  border-radius: .5rem;
+  > * {
+    border-bottom: 1px solid $color-4;
+    padding: 1rem 0;
+    width: calc(100% - 2rem);
+  }
   header {
-    width: 100%;
-    height: 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid blue;
+    color: $color-2;
+    border: none;
     #author {
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: .5rem;
-      border: 1px solid green;
+      color: $color-1;
       img {
         width: 3rem;
         height: 3rem;
@@ -43,5 +46,32 @@ $color-5: #283618;
         font-weight: bold;
       }
     }
+  }
+  #photo {
+    padding: 0;
+    width: 100%;
+  }
+  #tractor, #specs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    div {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  #tractor {
+    font-weight: bold;
+  }
+  #specs {
+    color: $color-2;
+  }
+  p {
+    border: none;
   }
 }

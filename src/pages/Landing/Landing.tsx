@@ -1,4 +1,4 @@
-import styles from './Landing.module.css'
+import styles from './Landing.module.scss'
 
 import { User } from '../../types/models'
 import { useQuery } from 'react-query'

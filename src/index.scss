@@ -18,7 +18,8 @@ $color-5: #283618;
 }
 
 :root {
-  @include expand();
+  width: 100%;
+  height: 100%;
   background-color: $color-1;
   body {
     @include expand();
@@ -28,6 +29,11 @@ $color-5: #283618;
       flex-flow: column;
       justify-content: flex-start;
       align-items: center;
+      main {
+        height: 100%;
+        padding: 1rem 0;
+        overflow-y: scroll;
+      }
     }
   }
 }

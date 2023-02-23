@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import { useQuery, useQueryClient } from 'react-query'
 
 import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
@@ -12,11 +11,8 @@ import NavBar from './components/NavBar/NavBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 import * as authService from './services/authService'
-import * as profileService from './services/profileService'
 
-import './App.scss'
-
-import { User, Profile } from './types/models'
+import { User } from './types/models'
 
 function App(): JSX.Element {
   const navigate = useNavigate()
