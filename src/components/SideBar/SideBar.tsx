@@ -13,6 +13,8 @@ const SideBar = (props: SideBarProps): JSX.Element => {
   
   return (
     <aside className={styles.container}>
+      <label htmlFor="search"></label>
+      <input type="search" id="search" />
       {posts?.map((post: Post)=> (
         <div key={post.id}>{post.variety}</div>
       ))}

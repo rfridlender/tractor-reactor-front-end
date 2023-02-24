@@ -14,6 +14,7 @@ $color-5: #283618;
   justify-content: flex-start;
   align-items: center;
   border-radius: .5rem;
+  overflow-x: visible;
   > * {
     border-bottom: 1px solid $color-4;
     padding: 1rem 0;
