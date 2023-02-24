@@ -15,7 +15,7 @@ interface LandingProps {
 const Landing = (props: LandingProps): JSX.Element => {
   const { user } = props
 
-  const { data, error, isLoading, isError} = useQuery('profiles', postService.index)
+  const { data, error, isLoading, isError} = useQuery(['profiles', user], postService.index)
 
   return (
     <>

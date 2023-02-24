@@ -16,8 +16,10 @@ $color-5: #283618;
   #spacer {
     width: .25rem;
     height: 100%;
-    background-color: $color-2;
     border-radius: 2rem;
+  }
+  #spacer.active {
+    background-color: $color-2;
   }
   #preview {
     width: calc(100% - 2rem);
