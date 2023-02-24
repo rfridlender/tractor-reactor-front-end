@@ -19,10 +19,11 @@ import translateDate from '../../helpers/translateDate'
 interface PostCardProps {
   post: Post;
   user: User | null;
+  postRefs: any;
 }
 
 const PostCard = (props: PostCardProps): JSX.Element => {
-  const { user } = props
+  const { user, postRefs } = props
 
   const [post, setPost] =useState<Post>(props.post)
   const [formData, setFormData] = useState<AddCommentFormData>({content: ''})
@@ -59,7 +60,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
   const ratingOptions: [ 1, 2, 3, 4, 5 ] = [ 1, 2, 3, 4, 5 ]
   
   return (
-    <article className={styles.container}>
+    <article className={styles.container} ref={(el) => postRefs.current[`post${post.id}`] = el}>
       <header>
         <div id={styles.author}>
           <img src={post.author.photo? post.author.photo : defaultPhoto} alt={post.author.name} />

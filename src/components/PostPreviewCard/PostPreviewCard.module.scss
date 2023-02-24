@@ -13,6 +13,9 @@ $color-5: #283618;
   align-items: center;
   gap: .75rem;
   border: none;
+  * {
+    pointer-events: none;
+  }
   #spacer {
     width: .25rem;
     height: 100%;
