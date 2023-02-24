@@ -29,7 +29,7 @@ $color-5: #283618;
       flex-flow: column;
       justify-content: flex-start;
       align-items: center;
-      main {
+      > main {
         width: 100%;
         max-width: 80rem;
         height: calc(100% - 4rem);
@@ -37,7 +37,7 @@ $color-5: #283618;
         justify-content: space-between;
         align-items: flex-start;
         gap: 1rem;
-        aside {
+        > aside {
           width: 25%;
           max-width: 20rem;
           background: linear-gradient($color-4, $color-5);
@@ -45,7 +45,7 @@ $color-5: #283618;
           border-radius: 0 0 .5rem .5rem;
           padding: 1rem;
         }
-        section {
+        > section {
           margin: 1rem 0;
           height: calc(100% - 2rem);
           padding-right: 1rem;

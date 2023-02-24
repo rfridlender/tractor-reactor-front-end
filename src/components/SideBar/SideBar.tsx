@@ -14,7 +14,7 @@ const SideBar = (props: SideBarProps): JSX.Element => {
   return (
     <aside className={styles.container}>
       {posts?.map((post: Post)=> (
-        <div>{post.variety}</div>
+        <div key={post.id}>{post.variety}</div>
       ))}
     </aside>
   )

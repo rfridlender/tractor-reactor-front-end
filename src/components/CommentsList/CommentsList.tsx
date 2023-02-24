@@ -1,13 +1,10 @@
 import { Post, User, Comment } from '../../types/models'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  } from '@fortawesome/free-solid-svg-icons'
+import { AddCommentFormData } from '../../types/forms'
 
 import styles from './CommentsList.module.scss'
 
-import defaultPhoto from '../../assets/icons/profile.png'
 import AddCommentForm from '../AddCommentForm/AddCommentForm'
-import { AddCommentFormData } from '../../types/forms'
+import CommentCard from '../CommentCard/CommentCard'
 
 interface CommentsListProps {
   post: Post;
@@ -22,10 +19,8 @@ const CommentsList = (props: CommentsListProps): JSX.Element => {
 
   return (
     <section className={styles.container}>
+      {post.comments.map((comment: Comment) => <CommentCard key={comment.id} user={user} comment={comment} />)}
       {user && <AddCommentForm user={user} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}/>}
-      {post.comments.map((comment: Comment) => (
-        comment.content
-      ))}
     </section>
   )
 }

@@ -35,6 +35,8 @@ const PostCard = (props: PostCardProps): JSX.Element => {
     evt.preventDefault()
     try {
       const newComment = await postService.addComment(formData, post.id)
+      console.log(newComment);
+      
       setPost({...post, comments: [newComment, ...post.comments]})
       setFormData({content: ''})
     } catch (err) {

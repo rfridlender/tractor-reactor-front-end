@@ -5,6 +5,9 @@ import defaultPhoto from '../../assets/icons/profile.png'
 import { User } from '../../types/models'
 import { AddCommentFormData } from '../../types/forms'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAdd } from '@fortawesome/free-solid-svg-icons'
+
 interface AddCommentFormProps {
   user: User;
   formData: AddCommentFormData;
@@ -19,9 +22,9 @@ const AddCommentForm = (props: AddCommentFormProps): JSX.Element => {
 
   return (
     <form autoComplete="off" onSubmit={handleSubmit} className={styles.container}>
-      <img src={user.profile.photo ? user.profile.photo : defaultPhoto} alt={user.name} />
+      <img src={user.profile.photo ?? defaultPhoto} alt={user.name} />
       <input type="text" value={content} name="content" placeholder="Write a comment..." onChange={handleChange} />
-      <button disabled={!content}>+</button>
+      <button disabled={!content}><FontAwesomeIcon icon={faAdd} /></button>
     </form>
   )
 }
