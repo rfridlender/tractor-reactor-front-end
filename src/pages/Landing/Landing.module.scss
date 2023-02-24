@@ -1,9 +1,11 @@
 .container {
+  height: calc(100% - 2rem);
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
   gap: 1rem;
+  padding-right: 1rem;
   > * {
     box-shadow: 0 .125rem .25rem black;
   }

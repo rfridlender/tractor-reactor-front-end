@@ -28,15 +28,15 @@ const NavBar = (props: NavBarProps): JSX.Element => {
           </div>
         {user ?
           <div id={styles.subnav}>
-            <div><NavLink to="/"><FontAwesomeIcon icon={faHome} /></NavLink></div>
-            <div><NavLink to="/profiles"><FontAwesomeIcon icon={faUserGroup} /></NavLink></div>
-            <div><NavLink to="/"><img src={user.profile.photo ?? defaultProfile} alt="" /></NavLink></div>
-            <div><NavLink to="" onClick={handleLogout}><FontAwesomeIcon icon={faSignOut} /></NavLink></div>
+            <NavLink to="/"><FontAwesomeIcon icon={faHome} /></NavLink>
+            <NavLink to="/profiles"><FontAwesomeIcon icon={faUserGroup} /></NavLink>
+            <NavLink to="/"><img src={user.profile.photo ?? defaultProfile} alt="" /></NavLink>
+            <NavLink to="" onClick={handleLogout}><FontAwesomeIcon icon={faSignOut} /></NavLink>
           </div>
         :
           <div id={styles.subnav}>
-            <div><NavLink to="/login">LOGIN</NavLink></div>
-            <div><NavLink to="/signup">SIGN UP</NavLink></div>
+            <NavLink className={styles.noUser} to="/login">LOGIN</NavLink>
+            <NavLink className={styles.noUser} to="/signup">SIGN UP</NavLink>
           </div>
         }
       </div>

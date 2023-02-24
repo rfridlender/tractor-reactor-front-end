@@ -33,24 +33,21 @@ function App(): JSX.Element {
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
-      <main>
-        <Routes>
-          <Route path="/" element={<Landing user={user} />} />
-          <Route path="/signup" element={<Signup handleAuthEvt={handleAuthEvt} />} />
-          <Route path="/login" element={<Login handleAuthEvt={handleAuthEvt} />} />
-          <Route path="/profiles" element={
-            <ProtectedRoute user={user}>
-              <Profiles />
-            </ProtectedRoute>
-          } />
-          <Route path="/change-password" element={
-            <ProtectedRoute user={user}>
-              <ChangePassword handleAuthEvt={handleAuthEvt} />
-            </ProtectedRoute>
-          } />
-        </Routes>
-
-      </main>
+      <Routes>
+        <Route path="/" element={<Landing user={user} />} />
+        <Route path="/signup" element={<Signup handleAuthEvt={handleAuthEvt} />} />
+        <Route path="/login" element={<Login handleAuthEvt={handleAuthEvt} />} />
+        <Route path="/profiles" element={
+          <ProtectedRoute user={user}>
+            <Profiles />
+          </ProtectedRoute>
+        } />
+        <Route path="/change-password" element={
+          <ProtectedRoute user={user}>
+            <ChangePassword handleAuthEvt={handleAuthEvt} />
+          </ProtectedRoute>
+        } />
+      </Routes>
     </>
   )
 }

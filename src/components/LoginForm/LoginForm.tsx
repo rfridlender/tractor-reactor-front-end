@@ -1,14 +1,10 @@
-// npm modules
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-// services
-import styles from './LoginForm.module.css'
+import styles from './LoginForm.module.scss'
 
-// stylesheets
 import * as authService from '../../services/authService'
 
-// types
 import { AuthFormProps } from '../../types/props'
 import { LoginFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'
@@ -52,13 +48,14 @@ const LoginForm = (props: AuthFormProps): JSX.Element => {
       className={styles.container}
     >
       <div className={styles.inputContainer}>
-        <label htmlFor="email" className={styles.label}>Email</label>
+        <label htmlFor="email" className={styles.label}>Email address</label>
         <input
           type="text"
           id="email"
           value={formData.email}
           name="email"
           onChange={handleChange}
+          placeholder="Email address"
         />
       </div>
       <div className={styles.inputContainer}>
@@ -69,15 +66,12 @@ const LoginForm = (props: AuthFormProps): JSX.Element => {
           value={formData.password}
           name="password"
           onChange={handleChange}
+          placeholder="Password"
         />
       </div>
-      <div>
-        <button disabled={isFormInvalid()} className={styles.button}>
-          Log In
-        </button>
-        <Link to="/">
-          <button>Cancel</button>
-        </Link>
+      <div id={styles.buttonContainer}>
+        <button disabled={isFormInvalid()} id={styles.login}>Log In</button>
+        <button id={styles.cancel}><Link to="/">Cancel</Link></button>
       </div>
     </form>
   )

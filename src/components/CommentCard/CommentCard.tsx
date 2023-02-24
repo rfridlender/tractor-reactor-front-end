@@ -12,7 +12,7 @@ import translateDate from '../../helpers/translateDate'
 interface CommentCardProps {
   user: User | null;
   comment: Comment;
-  handleDeleteComment: ((evt: React.MouseEvent) => Promise<void>);
+  handleDeleteComment: ((commentId: number, evt: React.MouseEvent) => Promise<void>);
 }
 
 const CommentCard = (props: CommentCardProps): JSX.Element => {
@@ -32,7 +32,7 @@ const CommentCard = (props: CommentCardProps): JSX.Element => {
           </header>
           <p>{comment.content}</p>
         </div>
-        {user?.id === comment.authorId && <button id={comment.id.toString()} onClick={handleDeleteComment}><FontAwesomeIcon icon={faRemove} /></button>}
+        {user?.id === comment.authorId && <button onClick={(evt) => handleDeleteComment(comment.id, evt)}><FontAwesomeIcon icon={faRemove} /></button>}
       </div>
     </article>
   )

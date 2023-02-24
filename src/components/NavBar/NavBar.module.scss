@@ -20,6 +20,9 @@ $color-5: #283618;
   align-items: center;
   box-shadow: 0 0 .5rem 0 black;
   font-size: 1.25rem;
+  a {
+    font-family: 'Arvo', serif;
+  }
   #nav {
     width: 80rem;
     height: 100%;
@@ -72,35 +75,38 @@ $color-5: #283618;
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
-      div {
-        height: 100%;
+      a {
+        width: 2.5rem;
+        height: 2.5rem;
         display: flex;
         justify-content: center;
         align-items: center;
-        a {
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          color: $color-1;
-          transition: all .5s;
-          img {
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 3rem;
-            object-fit: cover;
-          }
-          svg {
-            width: 1.5rem;
-            height: 1.5rem;
-            padding: .5rem;
-            border-radius: 3rem;
-            background-color: #283618;
-          }
+        background-color: $color-5;
+        color: $color-1;
+        transition: all .5s;
+        border-radius: 3rem;
+        img {
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 3rem;
+          object-fit: cover;
         }
-        a:hover {
-          color: $color-2;
+        svg {
+          width: 1.5rem;
+          height: 1.5rem;
+          padding: .5rem;
         }
+      }
+      a:hover {
+        color: $color-2;
+      }
+      a:hover img {
+        filter:grayscale(50%)
+      }
+      a.noUser {
+        width: fit-content;
+        padding: 0 1rem;
+        
       }
     }
   }

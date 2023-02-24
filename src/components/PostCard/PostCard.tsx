@@ -43,13 +43,11 @@ const PostCard = (props: PostCardProps): JSX.Element => {
     }
   }
 
-  const handleDeleteComment = async (evt: React.MouseEvent): Promise<void> => {
-    const target = evt.target as HTMLButtonElement
-    const targetCommentId: number = parseInt(target.id)
+  const handleDeleteComment = async (commentId: number, evt: React.MouseEvent): Promise<void> => {
     evt.preventDefault()
     try {
-      await postService.deleteComment(post.id, targetCommentId)
-      setPost({...post, comments: post.comments.filter((comment: Comment) => comment.id!== targetCommentId)})
+      await postService.deleteComment(post.id, commentId)
+      setPost({...post, comments: post.comments.filter((comment: Comment) => comment.id!== commentId)})
     } catch (err) {
       console.log(err)
     }

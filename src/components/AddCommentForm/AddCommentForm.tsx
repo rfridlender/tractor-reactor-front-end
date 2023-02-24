@@ -23,7 +23,7 @@ const AddCommentForm = (props: AddCommentFormProps): JSX.Element => {
   return (
     <form autoComplete="off" onSubmit={handleSubmit} className={styles.container}>
       <img src={user.profile.photo ?? defaultPhoto} alt={user.name} />
-      <input type="text" value={content} name="content" placeholder="Write a comment..." onChange={handleChange} />
+      <input type="text" value={content} name="content" placeholder="Write a reaction..." onChange={handleChange} />
       <button disabled={!content}><FontAwesomeIcon icon={faAdd} /></button>
     </form>
   )
