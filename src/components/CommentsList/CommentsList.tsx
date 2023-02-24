@@ -12,14 +12,17 @@ interface CommentsListProps {
   formData: AddCommentFormData;
   handleChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: ((evt: React.FormEvent) => Promise<void>);
+  handleDeleteComment: ((evt: React.MouseEvent) => Promise<void>);
 }
 
 const CommentsList = (props: CommentsListProps): JSX.Element => {
-  const { post, user, formData, handleChange, handleSubmit } = props
+  const { post, user, formData, handleChange, handleSubmit, handleDeleteComment } = props
 
   return (
     <section className={styles.container}>
-      {post.comments.map((comment: Comment) => <CommentCard key={comment.id} user={user} comment={comment} />)}
+      {post.comments.map((comment: Comment) => (
+        <CommentCard key={comment.id} user={user} comment={comment} handleDeleteComment={handleDeleteComment} />)
+      )}
       {user && <AddCommentForm user={user} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}/>}
     </section>
   )

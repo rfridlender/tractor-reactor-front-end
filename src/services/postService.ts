@@ -49,4 +49,16 @@ async function addComment(formData: AddCommentFormData, postId: number): Promise
   }
 }
 
-export { index, addComment }
+async function deleteComment(postId: number, commentId: number): Promise<number> {
+  try {
+    const res = await fetch(`${BASE_URL}/${postId}/comments/${commentId}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': `Bearer ${tokenService.getToken()}` }
+    })
+    return await res.json()
+  } catch (error) {
+    throw(error)
+  }
+}
+
+export { index, addComment, deleteComment }

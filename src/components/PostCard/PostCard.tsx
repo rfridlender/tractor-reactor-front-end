@@ -1,4 +1,4 @@
-import { Post, User } from '../../types/models'
+import { Post, User, Comment } from '../../types/models'
 import { AddCommentFormData } from '../../types/forms'
 
 import * as postService from '../../services/postService'
@@ -35,10 +35,20 @@ const PostCard = (props: PostCardProps): JSX.Element => {
     evt.preventDefault()
     try {
       const newComment = await postService.addComment(formData, post.id)
-      console.log(newComment);
-      
       setPost({...post, comments: [newComment, ...post.comments]})
       setFormData({content: ''})
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleDeleteComment = async (evt: React.MouseEvent): Promise<void> => {
+    const target = evt.target as HTMLButtonElement
+    const targetCommentId: number = parseInt(target.id)
+    evt.preventDefault()
+    try {
+      await postService.deleteComment(post.id, targetCommentId)
+      setPost({...post, comments: post.comments.filter((comment: Comment) => comment.id!== targetCommentId)})
     } catch (err) {
       console.log(err)
     }
@@ -72,7 +82,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
         <div>{`${post.horsepower} HP`}</div>
       </div>
       <p>{post.reaction}</p>
-      <CommentsList post={post} user={user} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
+      <CommentsList post={post} user={user} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} handleDeleteComment={handleDeleteComment} />
     </article>
   )
 }
