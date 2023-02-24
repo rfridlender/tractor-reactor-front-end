@@ -1,0 +1,57 @@
+$color-1: #fefae0;
+$color-2: #dda15e;
+$color-3: #bc6c25;
+$color-4: #606c38;
+$color-5: #283618;
+
+.container {
+  width: 100%;
+  padding: 0;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .75rem;
+  border: none;
+  #spacer {
+    width: .25rem;
+    height: 100%;
+    background-color: $color-2;
+    border-radius: 2rem;
+  }
+  #preview {
+    width: calc(100% - 2rem);
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 1rem;
+    gap: .5rem;
+    border-bottom: 1px solid $color-4;
+    img {
+      width: 2rem;
+      height: 2rem;
+      object-fit: cover;
+      border-radius: 2rem;
+    }
+    #tractor {
+      width: calc(100% - 2.5rem);
+      height: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: .5rem;
+      .tractorSpacer {
+        width: 1px;
+        height: 50%;
+        background-color: $color-4;
+      }
+      > div:nth-child(1) {
+        font-weight: bold;
+      }
+      > div:nth-child(5) {
+        color: $color-2;
+      }
+    }
+  }
+}

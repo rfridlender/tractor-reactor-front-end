@@ -26,16 +26,13 @@ $color-5: #283618;
     padding: 0 1rem;
     font-size: 1rem;
     border: none;
-    cursor: pointer;
+    outline: none;
     background-color: $color-4;
     color: $color-1;
   }
   input::placeholder {
     color: $color-1;
     opacity: .5;
-  }
-  input:focus {
-    outline: none;
   }
   button {
     width: 2rem;

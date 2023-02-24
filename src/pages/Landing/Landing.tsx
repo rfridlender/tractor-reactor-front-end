@@ -19,7 +19,7 @@ const Landing = (props: LandingProps): JSX.Element => {
 
   return (
     <>
-      <SideBar posts={data} />
+      <SideBar posts={data} user={user} />
       <section className={styles.container}>
         {data?.map(post => (
           <PostCard key={post.id} post={post} user={user}/>

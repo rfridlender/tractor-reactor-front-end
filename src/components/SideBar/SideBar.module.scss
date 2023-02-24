@@ -6,5 +6,53 @@ $color-5: #283618;
 
 .container {
   color: $color-1;
-  font-family: 'Arvo', serif;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1rem 0;
+  > * {
+    border-bottom: 1px solid $color-4;
+    padding: .5rem 0;
+    width: calc(100% - 2rem);
+  }
+  #search {
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 1rem;
+    padding: 0;
+    background-color: $color-5;
+    border-radius: 2rem;
+    border: 1px solid $color-5;
+    label {
+      width: 2.5rem;
+      height: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+    }
+    input {
+      width: 100%;
+      height: 100%;
+      padding: 0 .5rem;
+      background-color: $color-1;
+      color: $color-5;
+      border-radius: 0 2rem 2rem 0;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+    }
+    input::placeholder {
+      color: $color-4;
+    }
+  }
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-family: 'Arvo', serif;
+    margin: 0 1rem;
+  }
 }
