@@ -43,7 +43,8 @@ const NewPostForm = (props: NewPostFormProps): JSX.Element => {
     if(isSubmitted) return
     try {
       setIsSubmitted(true)
-      await postService.create(formData, photoData)
+      const newPost = await postService.create(formData)
+      await postService.addPhoto(photoData, newPost.id)
       navigate('/')
     } catch (err) {
       console.log(err)

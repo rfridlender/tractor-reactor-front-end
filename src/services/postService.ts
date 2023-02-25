@@ -1,6 +1,6 @@
 import { Post, Comment } from '../types/models'
 
-import { AddCommentFormData } from '../types/forms'
+import { AddCommentFormData, NewPostFormData, PhotoFormData } from '../types/forms'
 
 import * as tokenService from './tokenService'
 
@@ -15,23 +15,36 @@ async function index(): Promise<Post[]> {
   }
 }
 
-// async function addPhoto(
-//   photoData: FormData, 
-//   profileId: number
-// ): Promise<string> {
-//   try {
-//     const res = await fetch(`${BASE_URL}/${profileId}/add-photo`, {
-//       method: 'PUT',
-//       headers: {
-//         'Authorization': `Bearer ${tokenService.getToken()}`
-//       },
-//       body: photoData
-//     })
-//     return await res.json() as string
-//   } catch (error) {
-//     throw error
-//   }
-// }
+async function create(formData: NewPostFormData): Promise<Post> {
+  try {
+    const res = await fetch(BASE_URL, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData),
+    })
+    return await res.json()
+  } catch (error) {
+    throw(error)
+  }
+}
+
+async function addPhoto(photoData: FormData, postId: number): Promise<string> {
+  try {
+    const res = await fetch(`${BASE_URL}/${postId}/add-photo`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`
+      },
+      body: photoData
+    })
+    return await res.json() as string
+  } catch (error) {
+    throw error
+  }
+}
 
 async function addComment(formData: AddCommentFormData, postId: number): Promise<Comment> {
   try {
@@ -61,4 +74,4 @@ async function deleteComment(postId: number, commentId: number): Promise<number>
   }
 }
 
-export { index, addComment, deleteComment }
+export { index, create, addPhoto, addComment, deleteComment }
