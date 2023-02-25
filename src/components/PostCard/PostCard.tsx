@@ -6,15 +6,12 @@ import * as postService from '../../services/postService'
 import { useState } from 'react'
 
 import CommentsList from '../CommentsList/CommentsList'
+import AuthorPostHeader from '../AuthorPostHeader/AuthorPostHeader'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTractor } from '@fortawesome/free-solid-svg-icons'
 
 import styles from './PostCard.module.scss'
-
-import defaultPhoto from '../../assets/icons/profile.png'
-import translateDate from '../../helpers/translateDate'
-
 
 interface PostCardProps {
   post: Post;
@@ -52,20 +49,12 @@ const PostCard = (props: PostCardProps): JSX.Element => {
       console.log(err)
     }
   }
-  
-  const createdAtAgo = translateDate(post.createdAt)
 
   const ratingOptions: [ 1, 2, 3, 4, 5 ] = [ 1, 2, 3, 4, 5 ]
   
   return (
     <article className={styles.container} ref={(el) => postRefs.current[post.id] = el}>
-      <header>
-        <div id={styles.author}>
-          <img src={post.author.photo? post.author.photo : defaultPhoto} alt={post.author.name} />
-          <div>{post.author.name}</div>
-        </div>
-        <div>{createdAtAgo}</div>
-      </header>
+      {<AuthorPostHeader post={post} />}
       {post.photo && <img id={styles.photo} src={post.photo} alt={`${post.author.name}'s ${post.brand} Tractor`} />}
       <div id={styles.tractor}>
         <div>{post.brand}</div>
