@@ -43,7 +43,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
     }
   }
 
-  const handleDeleteComment = async (commentId: number, evt: React.MouseEvent): Promise<void> => {
+  const handleDeleteComment = async (evt: React.MouseEvent, commentId: number): Promise<void> => {
     evt.preventDefault()
     try {
       await postService.deleteComment(post.id, commentId)
@@ -58,7 +58,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
   const ratingOptions: [ 1, 2, 3, 4, 5 ] = [ 1, 2, 3, 4, 5 ]
   
   return (
-    <article className={styles.container} ref={(el) => postRefs.current[`post${post.id}`] = el}>
+    <article className={styles.container} ref={(el) => postRefs.current[post.id] = el}>
       <header>
         <div id={styles.author}>
           <img src={post.author.photo? post.author.photo : defaultPhoto} alt={post.author.name} />
@@ -81,7 +81,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
         <div>{`${post.horsepower} HP`}</div>
       </div>
       <p>{post.reaction}</p>
-      <CommentsList post={post} user={user} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} handleDeleteComment={handleDeleteComment} />
+      {!!(post.comments.length) && <CommentsList post={post} user={user} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} handleDeleteComment={handleDeleteComment} />}
     </article>
   )
 }

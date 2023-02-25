@@ -26,10 +26,10 @@ $color-5: #283618;
   #nav {
     width: 80rem;
     height: 100%;
-    padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 3rem;
     #logo {
       height: 100%;
       display: flex;
@@ -107,6 +107,40 @@ $color-5: #283618;
         width: fit-content;
         padding: 0 1rem;
         
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    #nav {
+      padding: 0 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    #nav {
+      padding: 0 1rem;
+      #logo {
+        a {
+          div {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .container {
+    #nav {
+      justify-content: center;
+      #logo {
+        display: none;
       }
     }
   }

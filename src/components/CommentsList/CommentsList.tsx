@@ -11,8 +11,8 @@ interface CommentsListProps {
   user: User | null;
   formData: AddCommentFormData;
   handleChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: ((evt: React.FormEvent) => Promise<void>);
-  handleDeleteComment: ((commentId: number, evt: React.MouseEvent) => Promise<void>);
+  handleSubmit: (evt: React.FormEvent) => Promise<void>;
+  handleDeleteComment: (evt: React.MouseEvent, commentId: number) => Promise<void>;
 }
 
 const CommentsList = (props: CommentsListProps): JSX.Element => {

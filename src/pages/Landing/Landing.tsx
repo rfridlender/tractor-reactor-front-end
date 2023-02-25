@@ -13,8 +13,6 @@ interface LandingProps {
   user: User | null;
 }
 
-
-
 const Landing = (props: LandingProps): JSX.Element => {
   const { user } = props
 
@@ -22,9 +20,8 @@ const Landing = (props: LandingProps): JSX.Element => {
 
   const postRefs = useRef({}) as MutableRefObject<any>
 
-  const scrollPostIntoView = (evt: React.MouseEvent): void => {
-    const target = evt.target as HTMLElement
-    postRefs.current[target.id].scrollIntoView({ behavior: "smooth" })
+  const scrollPostIntoView = (postId: number): void => {
+    postRefs.current[postId].scrollIntoView({ behavior: "smooth" })
   }
 
   return (

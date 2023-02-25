@@ -12,7 +12,7 @@ import PostPreviewCard from '../PostPreviewCard/PostPreviewCard'
 export interface SideBarProps {
   posts?: Post[];
   user?: User | null;
-  scrollPostIntoView?: ((evt: React.MouseEvent) => void);
+  scrollPostIntoView?: (postId: number) => void;
 }
 
 const SideBar = (props: SideBarProps): JSX.Element => {

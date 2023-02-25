@@ -20,6 +20,9 @@ $color-5: #283618;
     padding: 1rem 0;
     width: calc(100% - 2rem);
   }
+  > *:last-child {
+    border: none;
+  }
   header {
     display: flex;
     justify-content: space-between;
@@ -85,8 +88,5 @@ $color-5: #283618;
         -webkit-text-stroke: 2px $color-4;
       }
     }
-  }
-  > section {
-    border: none
   }
 }

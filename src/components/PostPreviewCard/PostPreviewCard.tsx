@@ -5,16 +5,16 @@ import defaultPhoto from '../../assets/icons/profile.png'
 import { Post, User } from '../../types/models'
 
 interface PostPreviewCardProps {
-  post?: Post;
+  post: Post;
   user?: User | null;
-  scrollPostIntoView: ((evt: React.MouseEvent) => void);
+  scrollPostIntoView: ((postId: number) => void);
 }
 
 const PostPreviewCard = (props: PostPreviewCardProps): JSX.Element => {
   const { post, user, scrollPostIntoView } = props
 
   return (
-    <article className={styles.container} onClick={(evt) => scrollPostIntoView(evt)} id={`post${post?.id}`}>
+    <article className={styles.container} onClick={() => scrollPostIntoView(post.id)}>
       <div id={styles.spacer} className={user?.profile.id === post?.authorId ? styles.active : ''} />
       <div id={styles.preview}>
         <img src={post?.photo ?? defaultPhoto} alt={post?.author.name} />

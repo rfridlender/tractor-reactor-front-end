@@ -12,7 +12,7 @@ interface AddCommentFormProps {
   user: User;
   formData: AddCommentFormData;
   handleChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: ((evt: React.FormEvent) => Promise<void>);
+  handleSubmit: (evt: React.FormEvent) => Promise<void>;
 }
 
 const AddCommentForm = (props: AddCommentFormProps): JSX.Element => {
