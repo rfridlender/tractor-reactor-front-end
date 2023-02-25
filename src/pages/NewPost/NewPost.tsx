@@ -2,11 +2,9 @@ import styles from './NewPost.module.scss'
 
 import { User } from '../../types/models'
 
-import * as postService from '../../services/postService'
-
-import PostCard from '../../components/PostCard/PostCard'
 import SideBar from '../../components/SideBar/SideBar'
-import { MutableRefObject, useRef } from 'react'
+import AuthorPostHeader from '../../components/AuthorPostHeader/AuthorPostHeader'
+import NewPostForm from '../../components/NewPostForm/NewPostForm'
 
 interface NewPostProps {
   user: User;
@@ -19,7 +17,8 @@ const NewPost = (props: NewPostProps): JSX.Element => {
     <main>
       <SideBar />
       <section className={styles.container}>
-        hello
+        <AuthorPostHeader user={user} />
+        <NewPostForm />
       </section>
     </main>
   )

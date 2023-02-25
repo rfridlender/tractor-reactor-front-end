@@ -4,6 +4,15 @@
 
 /* ---------===== auth forms =====--------- */
 
+export interface NewPostFormData {
+  variety: string;
+  brand: string;
+  design: string;
+  horsepower: number;
+  reaction: string;
+  rating: number;
+}
+
 export interface AddCommentFormData {
   content: string;
 }

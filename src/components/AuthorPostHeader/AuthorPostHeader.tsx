@@ -26,7 +26,7 @@ const AuthorPostHeader = (props: AuthorPostHeaderProps) => {
       </header>
     )
   } else {
-    const createdNow = new Date().toString()
+    const createdNow = new Date().toDateString()
 
     return (
       <header className={styles.container}>
