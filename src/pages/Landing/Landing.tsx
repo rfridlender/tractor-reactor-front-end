@@ -28,7 +28,7 @@ const Landing = (props: LandingProps): JSX.Element => {
     <main>
       <SideBar posts={data} user={user} scrollPostIntoView={scrollPostIntoView} />
       <section className={styles.container}>
-        {data?.map(post => (
+        {data?.map((post: Post) => (
           <PostCard key={post.id} post={post} user={user} postRefs={postRefs} />
         ))}
       </section>

@@ -6,7 +6,7 @@ import styles from './NavBar.module.scss'
 import logo from '../../assets/icons/logo.png'
 import defaultProfile from '../../assets/icons/profile.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faSignOut, faUserGroup } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faPlus, faSignOut } from '@fortawesome/free-solid-svg-icons'
 
 interface NavBarProps {
   user: User | null;
@@ -29,8 +29,8 @@ const NavBar = (props: NavBarProps): JSX.Element => {
         {user ?
           <div id={styles.subnav}>
             <NavLink to="/"><FontAwesomeIcon icon={faHome} /></NavLink>
-            <NavLink to="/profiles"><FontAwesomeIcon icon={faUserGroup} /></NavLink>
-            <NavLink to="/"><img src={user.profile.photo ?? defaultProfile} alt="" /></NavLink>
+            <NavLink to="/posts/new"><FontAwesomeIcon icon={faPlus} /></NavLink>
+            <NavLink to="/"><img src={user.profile.photo ?? defaultProfile} alt={user.name} /></NavLink>
             <NavLink to="" onClick={handleLogout}><FontAwesomeIcon icon={faSignOut} /></NavLink>
           </div>
         :

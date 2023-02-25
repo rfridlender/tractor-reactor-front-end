@@ -5,7 +5,7 @@ import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
-import Profiles from './pages/Profiles/Profiles'
+import NewPost from './pages/NewPost/NewPost'
 
 import NavBar from './components/NavBar/NavBar'
 import SideBar from './components/SideBar/SideBar'
@@ -37,9 +37,9 @@ function App(): JSX.Element {
         <Route path="/" element={<Landing user={user} />} />
         <Route path="/signup" element={<Signup handleAuthEvt={handleAuthEvt} />} />
         <Route path="/login" element={<Login handleAuthEvt={handleAuthEvt} />} />
-        <Route path="/profiles" element={
+        <Route path="/posts/new" element={
           <ProtectedRoute user={user}>
-            <Profiles />
+            {user && <NewPost user={user} />}
           </ProtectedRoute>
         } />
         <Route path="/change-password" element={
