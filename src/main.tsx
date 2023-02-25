@@ -6,6 +6,7 @@ import { useQuery, QueryClient, QueryClientProvider } from 'react-query'
 import App from './App'
 
 import './index.scss'
+import './media-queries.scss'
 
 const queryClient = new QueryClient()
 

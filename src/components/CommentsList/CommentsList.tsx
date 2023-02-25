@@ -20,9 +20,13 @@ const CommentsList = (props: CommentsListProps): JSX.Element => {
 
   return (
     <section className={styles.container}>
-      {post.comments.map((comment: Comment) => (
-        <CommentCard key={comment.id} user={user} comment={comment} handleDeleteComment={handleDeleteComment} />)
-      )}
+      {post.comments.length ? 
+        post.comments.map((comment: Comment) => (
+          <CommentCard key={comment.id} user={user} comment={comment} handleDeleteComment={handleDeleteComment} />
+        ))
+        :
+        <article>No reactions yet...</article>
+      }
       {user && <AddCommentForm user={user} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}/>}
     </section>
   )

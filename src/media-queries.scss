@@ -1,0 +1,49 @@
+@media screen and (max-width: 1024px) {
+  :root {
+    body {
+      #root {
+        > main {
+          > aside {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  :root {
+    body {
+      #root {
+        > main {
+          > section {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  :root {
+    body {
+      #root {
+        > main {
+          padding: 0;
+          > section {
+            height: 100%;
+            padding: 1rem 0;
+            margin: 0;
+            overflow: visible;
+            border-radius: 0;
+            > article {
+              border-radius: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
