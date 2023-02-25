@@ -10,13 +10,13 @@ $color-5: #283618;
   justify-content: flex-start;
   align-items: center;
   gap: rem;
-  padding: 0 4rem;
+  padding: 0 1rem;
   background-color: $color-5;
   color: $color-1;
   box-shadow: 0 .125rem .25rem black;
   #logo {
     width: 100%;
-    padding: 4rem 0;
+    padding: 1rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,7 +48,7 @@ $color-5: #283618;
     justify-content: center;
     align-items: flex-start;
     gap: 1rem;
-    margin: 4rem 0;
+    margin: 1rem 0;
     padding: 1.5rem;
     background-color: $color-4;
     border-radius: .5rem;
@@ -78,7 +78,7 @@ $color-5: #283618;
     }
   }
   > h1 {
-    padding-bottom: 4rem;
+    padding-bottom: 1rem;
     font-weight: 400;
     font-size: 1rem;
     span {
