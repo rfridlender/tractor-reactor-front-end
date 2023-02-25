@@ -32,7 +32,7 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
             <h1>Log into <span>Tractor Reactor</span></h1>
             <h2>Stay updated on the world of tractors</h2>
           </header>
-          <p>{message}</p>
+          {message && <p>{message}</p>}
           <LoginForm {...props} updateMessage={updateMessage} />
         </div>
         <h1>New to <span>Tractor Reactor</span>? <Link to="/signup">Join now</Link></h1>

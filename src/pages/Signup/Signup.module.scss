@@ -1,0 +1,92 @@
+$color-1: #fefae0;
+$color-2: #dda15e;
+$color-3: #bc6c25;
+$color-4: #606c38;
+$color-5: #283618;
+
+.container {
+  max-height: calc(100% - 2rem);
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: rem;
+  padding: 0 4rem;
+  background-color: $color-5;
+  color: $color-1;
+  box-shadow: 0 .125rem .25rem black;
+  #logo {
+    width: 100%;
+    padding: 4rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid $color-4;
+    background: radial-gradient($color-4, $color-5 65%);
+    img {
+      height: 8rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      filter: blur(.5px) sepia(30%) drop-shadow(.25rem .25rem .125rem black);
+      transition: all .5s;
+    }
+    div {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Arvo', serif;
+      font-size: 3rem;
+      text-shadow: .25rem .25rem .125rem black;
+    }
+  }
+  #formContainer {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    margin: 4rem 0;
+    padding: 1.5rem;
+    background-color: $color-4;
+    border-radius: .5rem;
+    box-shadow: 0 .125rem .25rem black;
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-flow: column;
+      gap: .25rem;
+      h1 {
+        font-weight: 400;
+        font-size: 1.5rem;
+        span {
+          font-family: 'Arvo', serif;
+          text-shadow: .25rem .25rem .75rem black;
+        }
+      }
+      h2 {
+        color: $color-2;
+        font-weight: 400;
+        font-size: 1rem;
+      }
+    }
+    p {
+      color: darkred;
+    }
+  }
+  > h1 {
+    padding-bottom: 4rem;
+    font-weight: 400;
+    font-size: 1rem;
+    span {
+      font-family: 'Arvo', serif;
+      text-shadow: .25rem .25rem .75rem black;
+    }
+    a {
+      color: $color-2;
+    }
+  }
+}
