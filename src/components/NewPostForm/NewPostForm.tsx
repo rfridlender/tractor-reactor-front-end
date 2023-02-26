@@ -5,9 +5,10 @@ import * as postService from '../../services/postService'
 
 import styles from './NewPostForm.module.scss'
 
-import { AuthFormProps } from '../../types/props'
-import { NewPostFormData, PhotoFormData } from '../../types/forms'
-import { handleErrMsg } from '../../types/validators'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTractor } from '@fortawesome/free-solid-svg-icons'
+
+import { NewPostFormData, PhotoFormData, NewPostFormElements } from '../../types/forms'
 
 import { tractors } from '../../data/tractors'
 
@@ -17,34 +18,55 @@ interface NewPostFormProps {
 const NewPostForm = (props: NewPostFormProps): JSX.Element => {
   const navigate = useNavigate()
 
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [formData, setFormData] = useState<NewPostFormData>({
-    variety: '',
-    brand: '',
-    design: '',
-    horsepower: 0,
-    reaction: '',
-    rating: 1,
-  })
   const [photoData, setPhotoData] = useState<PhotoFormData>({
     photo: null
   })
+  const [photoPreview, setPhotoPreview] = useState<string>('')
+  const [formData, setFormData] = useState<NewPostFormData>({
+    variety: 'Utility',
+    brand: 'John Deere',
+    design: '',
+    horsepower: 0,
+    reaction: '',
+    rating: 0,
+  })
+  const [hover, setHover] = useState<number | null>(null)
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  
+  const handleChangePhoto = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const reader = new FileReader()
+    if (evt.target.files) reader.readAsDataURL(evt.target.files[0])
+    reader.onload = () => {
+      const imageUrl = reader.result as string
+      setPhotoPreview(imageUrl)
+    }
+    if (evt.target.files) setPhotoData({ photo: evt.target.files.item(0) })
+  }
 
-  const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (evt: React.ChangeEvent<NewPostFormElements>) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value })
   }
 
-  const handleChangePhoto = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    if (evt.target.files) setPhotoData({ photo: evt.target.files.item(0) })
+  const handleRating = (rating: number) => {
+    setFormData({ ...formData, rating: rating })
+  }
+
+  const handleHover = (evt: React.MouseEvent<SVGSVGElement>, rating: number): void => {
+    if (evt.type === 'mouseover') {
+      setHover(rating)
+    } else if (evt.type === 'mouseleave') {
+      setHover(null)
+    }
   }
 
   const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
     evt.preventDefault()
+    console.log(formData);
+    console.log(photoData);
     if(isSubmitted) return
     try {
       setIsSubmitted(true)
-      const newPost = await postService.create(formData)
-      await postService.addPhoto(photoData, newPost.id)
+      await postService.create(formData, photoData)
       navigate('/')
     } catch (err) {
       console.log(err)
@@ -54,10 +76,11 @@ const NewPostForm = (props: NewPostFormProps): JSX.Element => {
 
   const { variety, brand, design, horsepower, reaction, rating } = formData
   const { photo } = photoData
-
   const isFormInvalid = (): boolean => {
     return !(variety && brand && design && horsepower && reaction && rating && photo)
   }
+
+  const ratingOptions: [ 1, 2, 3, 4, 5 ] = [ 1, 2, 3, 4, 5 ]
 
   return (
     <form
@@ -77,9 +100,10 @@ const NewPostForm = (props: NewPostFormProps): JSX.Element => {
           />
         </div>
       </div>
+      <img id={styles.photo} src={photoPreview} />
       <div className={styles.inputContainer}>
         <label htmlFor="brand">Make:</label>
-        <select name="brand" id="brand" onChange={(evt) => console.log(evt)} required>
+        <select name="brand" id="brand" onChange={handleChange} required>
           {tractors.brands.map(brand => (
             <option key={brand} value={brand}>{brand}</option>
           ))}
@@ -98,20 +122,26 @@ const NewPostForm = (props: NewPostFormProps): JSX.Element => {
       </div>
       <div className={styles.inputContainer}>
         <label htmlFor="variety">Type:</label>
-        <select name="variety" id="variety" onChange={(evt) => console.log(evt)} required>
+        <select name="variety" id="variety" onChange={handleChange} required>
           {tractors.types.map(type => (
-            <option key={type} value={variety}>{type}</option>
+            <option key={type} value={type}>{type}</option>
           ))}
         </select>
       </div>
       <div className={styles.inputContainer}>
         <label htmlFor="confirm">Rating:</label>
-        
-
-        X X X X X
-
-
-
+        <div id={styles.rating}>
+          {ratingOptions.map((ratingOption: number): JSX.Element => (
+            <FontAwesomeIcon
+              key={ratingOption}
+              icon={faTractor}
+              onClick={() => handleRating(ratingOption)}
+              onMouseOver={(evt) => handleHover(evt, ratingOption)}
+              onMouseLeave={(evt) => handleHover(evt, ratingOption)}
+              className={ratingOption <= (hover ?? rating) ? styles.rated : styles.unrated}
+            />
+          ))}
+        </div>
       </div>
       <div className={styles.inputContainer}>
         <label htmlFor="horsepower">HP:</label>
@@ -121,6 +151,7 @@ const NewPostForm = (props: NewPostFormProps): JSX.Element => {
           value={horsepower}
           name="horsepower"
           onChange={handleChange}
+          max="1000"
         />
       </div>
       <div className={styles.inputContainer}>
@@ -129,7 +160,7 @@ const NewPostForm = (props: NewPostFormProps): JSX.Element => {
           id="reaction"
           value={reaction}
           name="reaction"
-          onChange={(evt) => console.log(evt)}
+          onChange={handleChange}
           placeholder="What is your reaction?"
         />
       </div>

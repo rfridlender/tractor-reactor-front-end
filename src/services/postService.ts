@@ -15,7 +15,7 @@ async function index(): Promise<Post[]> {
   }
 }
 
-async function create(formData: NewPostFormData): Promise<Post> {
+async function create(formData: NewPostFormData, photoFormData: PhotoFormData) {
   try {
     const res = await fetch(BASE_URL, {
       method: 'POST',
@@ -25,7 +25,12 @@ async function create(formData: NewPostFormData): Promise<Post> {
       },
       body: JSON.stringify(formData),
     })
-    return await res.json()
+    const post = await res.json()
+    if (photoFormData.photo) {
+      const photoData = new FormData()
+      photoData.append('photo', photoFormData.photo)
+      await addPhoto(photoData, post.id)
+    }
   } catch (error) {
     throw(error)
   }

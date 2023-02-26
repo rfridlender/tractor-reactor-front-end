@@ -13,6 +13,8 @@ export interface NewPostFormData {
   rating: number;
 }
 
+export type NewPostFormElements = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+
 export interface AddCommentFormData {
   content: string;
 }

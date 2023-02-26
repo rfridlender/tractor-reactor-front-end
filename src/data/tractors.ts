@@ -1,11 +1,11 @@
 export const tractors: { types: string[], brands: string[] } = {
   types: [
+    'Utility',
     'Industrial',
     'Row Crop',
     'Orchard',
     'Compact',
     'Sub-Compact',
-    'Utility',
     'Garden',
     'Specialty',
     'Earthmoving'

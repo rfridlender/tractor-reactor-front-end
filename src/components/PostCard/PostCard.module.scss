@@ -19,7 +19,7 @@ $color-5: #283618;
     padding: 1rem 0;
     width: calc(100% - 2rem);
   }
-  > *:last-child {
+  > *:first-child, > *:last-child {
     border: none;
   }
   #photo {
