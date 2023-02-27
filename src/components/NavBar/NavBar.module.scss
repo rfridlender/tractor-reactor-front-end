@@ -44,14 +44,14 @@ $color-5: #283618;
         gap: .5rem;
         text-decoration: none;
         color: $color-1;
-        transition: all .5s;
+        transition: all .25s;
         img {
           height: 3.25rem;
           display: flex;
           justify-content: center;
           align-items: center;
           filter: blur(.125px) sepia(30%) drop-shadow(.125rem .125rem .125rem $color-5);
-          transition: all .5s;
+          transition: all .25s;
         }
         div {
           height: 100%;
@@ -83,7 +83,7 @@ $color-5: #283618;
         align-items: center;
         background-color: $color-5;
         color: $color-1;
-        transition: all .5s;
+        transition: all .25s;
         border-radius: 3rem;
         img {
           width: 2.5rem;

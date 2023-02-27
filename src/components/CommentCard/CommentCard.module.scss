@@ -77,9 +77,15 @@ $color-5: #283618;
     font-size: 1.5rem;
     svg {
       pointer-events: none;
+      transition: all .25s;
       path {
         pointer-events: none;
       }
+    }
+  }
+  button:hover {
+    svg {
+      color: $color-2;
     }
   }
   #options {

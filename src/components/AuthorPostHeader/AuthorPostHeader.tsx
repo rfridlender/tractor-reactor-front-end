@@ -1,14 +1,17 @@
-import { Post, User } from '../../types/models';
+import { Post, User } from '../../types/models'
+
+import { useState } from 'react'
 
 import styles from './AuthorPostHeader.module.scss'
 import defaultPhoto from '../../assets/icons/profile.png'
 
-import translateDate from '../../helpers/translateDate';
+import translateDate from '../../helpers/translateDate'
 
+import { SlOptions } from 'react-icons/sl'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRemove } from '@fortawesome/free-solid-svg-icons'
 import { MdEdit } from 'react-icons/md'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 interface AuthorPostHeaderProps {
   post?: Post;
@@ -18,6 +21,8 @@ interface AuthorPostHeaderProps {
 
 const AuthorPostHeader = (props: AuthorPostHeaderProps) => {
   const { post, handleDeletePost, user } = props
+
+  const [isOptionsOpen, setIsOptionsOpen] = useState(false)
 
   if (post && handleDeletePost) {
     const createdAtAgo = translateDate(post.createdAt)
@@ -30,18 +35,17 @@ const AuthorPostHeader = (props: AuthorPostHeaderProps) => {
         </div>
         <div id={styles.optionsContainer}>
           <div>{createdAtAgo}</div>
-          {user?.profile.id === post.authorId &&
-            <>
-              <button>
-                <Link to={`/posts/${post.id}/edit`} state={post}>
-                  <MdEdit />
-                </Link>
-              </button>
-              <button onClick={(evt) => handleDeletePost(evt, post.id)}>
-                <FontAwesomeIcon icon={faRemove} />
-              </button>
-            </>
-          }
+          {user?.id === post.authorId && <div id={isOptionsOpen ? styles.options : ''}>
+            {!isOptionsOpen ?
+              <button onClick={() => setIsOptionsOpen(true)}><SlOptions /></button>
+              :
+              <div>
+                <div onClick={() => setIsOptionsOpen(false)}>Back</div>
+                <div><Link to={`/posts/${post.id}/edit`} state={post}>Edit</Link></div>
+                <div onClick={(evt) => handleDeletePost(evt, post.id)}>Delete</div>
+              </div>
+            }
+          </div>}
         </div>
       </header>
     )

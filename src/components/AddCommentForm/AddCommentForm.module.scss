@@ -47,5 +47,13 @@ $color-5: #283618;
     background-color: $color-4;
     color: $color-1;
     font-size: 1.5rem;
+    svg {
+      transition: all .25s;
+    }
+  }
+  button:hover {
+    svg {
+      color: $color-2;
+    }
   }
 }
