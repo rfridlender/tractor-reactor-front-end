@@ -16,6 +16,8 @@ interface LandingProps {
 const Landing = (props: LandingProps): JSX.Element => {
   const { user } = props
 
+  const queryClient = useQueryClient()
+
   const { data, error, isLoading, isError} = useQuery(['posts', user], postService.index)
 
   const postRefs = useRef({}) as MutableRefObject<any>
@@ -24,6 +26,7 @@ const Landing = (props: LandingProps): JSX.Element => {
     evt.preventDefault()
     try {
       await postService.delete(postId)
+      queryClient.invalidateQueries({ queryKey: ['posts'] })
     } catch (err) {
       console.log(err)
     }

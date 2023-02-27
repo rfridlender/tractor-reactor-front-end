@@ -1,14 +1,10 @@
-// npm modules
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-// services
 import * as authService from '../../services/authService'
 
-// stylesheets
-import styles from './ChangePasswordForm.module.css'
+import styles from './ChangePasswordForm.module.scss'
 
-// types
 import { AuthFormProps } from '../../types/props'
 import { ChangePasswordFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'
@@ -88,13 +84,11 @@ const ChangePasswordForm = (props: AuthFormProps): JSX.Element => {
           onChange={handleChange}
         />
       </div>
-      <div className={styles.inputContainer}>
-        <button disabled={isFormInvalid()} className={styles.button}>
+      <div id={styles.buttonContainer}>
+        <button id={styles.changePassword} disabled={isFormInvalid()} className={styles.button}>
           Change Password
         </button>
-        <Link to="/">
-          <button>Cancel</button>
-        </Link>
+        <button id={styles.cancel}><Link to="/">Cancel</Link></button>
       </div>
     </form>
   )

@@ -25,6 +25,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
   const { post, user, postRefs, handleDeletePost } = props
 
   const queryClient = useQueryClient()
+  
   const [formData, setFormData] = useState<AddCommentFormData>({content: ''})
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
