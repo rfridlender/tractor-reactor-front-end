@@ -100,6 +100,22 @@ async function addComment(formData: AddCommentFormData, postId: number): Promise
   }
 }
 
+async function updateComment(formData: AddCommentFormData, postId: number, commentId: number): Promise<Comment> {
+  try {
+    const res = await fetch(`${BASE_URL}/${postId}/comments/${commentId}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData),
+    })
+    return await res.json()
+  } catch (error) {
+    throw(error)
+  }
+}
+
 async function deleteComment(postId: number, commentId: number): Promise<number> {
   try {
     const res = await fetch(`${BASE_URL}/${postId}/comments/${commentId}`, {
@@ -112,4 +128,12 @@ async function deleteComment(postId: number, commentId: number): Promise<number>
   }
 }
 
-export { index, create, update, deletePost as delete, addPhoto, addComment, deleteComment }
+export {
+  index,
+  create,
+  update,
+  deletePost as delete,
+  addPhoto, addComment,
+  updateComment,
+  deleteComment
+}

@@ -15,7 +15,7 @@ export interface PostFormData {
 
 export type PostFormElements = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
 
-export interface AddCommentFormData {
+export interface CommentFormData {
   content: string;
 }
 

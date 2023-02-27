@@ -1,5 +1,5 @@
-import { Post, User, Comment } from '../../types/models'
-import { AddCommentFormData } from '../../types/forms'
+import { Post, User } from '../../types/models'
+import { CommentFormData } from '../../types/forms'
 
 import * as postService from '../../services/postService'
 
@@ -26,13 +26,13 @@ const PostCard = (props: PostCardProps): JSX.Element => {
 
   const queryClient = useQueryClient()
   
-  const [formData, setFormData] = useState<AddCommentFormData>({content: ''})
+  const [formData, setFormData] = useState<CommentFormData>({content: ''})
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value })
   }
 
-  const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
+  const handleAddComment = async (evt: React.FormEvent): Promise<void> => {
     evt.preventDefault()
     try {
       await postService.addComment(formData, post.id)
@@ -73,7 +73,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
         <div>{`${post.horsepower} HP`}</div>
       </div>
       <p>{post.reaction}</p>
-      <CommentsList post={post} user={user} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} handleDeleteComment={handleDeleteComment} />
+      <CommentsList post={post} user={user} formData={formData} handleChange={handleChange} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment} />
     </article>
   )
 }

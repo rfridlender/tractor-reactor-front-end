@@ -1,5 +1,5 @@
 import { Post, User, Comment } from '../../types/models'
-import { AddCommentFormData } from '../../types/forms'
+import { CommentFormData } from '../../types/forms'
 
 import styles from './CommentsList.module.scss'
 
@@ -9,25 +9,25 @@ import CommentCard from '../CommentCard/CommentCard'
 interface CommentsListProps {
   post: Post;
   user: User | null;
-  formData: AddCommentFormData;
+  formData: CommentFormData;
   handleChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (evt: React.FormEvent) => Promise<void>;
+  handleAddComment: (evt: React.FormEvent) => Promise<void>;
   handleDeleteComment: (evt: React.MouseEvent, commentId: number) => Promise<void>;
 }
 
 const CommentsList = (props: CommentsListProps): JSX.Element => {
-  const { post, user, formData, handleChange, handleSubmit, handleDeleteComment } = props
+  const { post, user, formData, handleChange, handleAddComment, handleDeleteComment } = props
 
   return (
     <section className={styles.container}>
       {post.comments.length ? 
         post.comments.map((comment: Comment) => (
-          <CommentCard key={comment.id} user={user} comment={comment} handleDeleteComment={handleDeleteComment} />
+          <CommentCard key={comment.id} user={user} post={post} comment={comment} handleDeleteComment={handleDeleteComment} />
         ))
         :
         <article>No reactions yet...</article>
       }
-      {user && <AddCommentForm user={user} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}/>}
+      {user && <AddCommentForm user={user} formData={formData} handleChange={handleChange} handleAddComment={handleAddComment}/>}
     </section>
   )
 }
