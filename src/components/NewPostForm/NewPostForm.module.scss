@@ -15,8 +15,12 @@ $color-5: #283618;
     padding: 1rem 0;
     border-bottom: 1px solid $color-4;
   }
+  > *:first-child {
+    border: none;
+  }
   > *:last-child {
     border-top: 1px solid $color-4;
+    border-bottom: none;
   }
   .inputContainer {
     display: flex;
@@ -43,6 +47,12 @@ $color-5: #283618;
       background-color: $color-1;
       color: $color-5;
     }
+  }
+  #spacer {
+    background-color: $color-4;
+    height: 1px;
+    padding: 0;
+    border: none;
   }
   #photoUpload {
     display: flex;
@@ -181,4 +191,30 @@ $color-5: #283618;
   }
 }
 
+@media screen and (max-width: 600px) {
+  .container {
+    #tractor, #specs {
+      flex-flow: column;
+      .inputContainer {
+        width: 75%;
+        label {
+          width: 35%;
+        }
+        input, select, .smallInput, #rating {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .container {
+    #tractor, #specs {
+      .inputContainer {
+          width: 100%;
+      }
+    }
+  }
+}
 

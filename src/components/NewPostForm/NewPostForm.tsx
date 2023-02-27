@@ -97,7 +97,7 @@ const NewPostForm = (props: NewPostFormProps): JSX.Element => {
           onChange={handleChangePhoto}
         />
       </div>
-      <img id={styles.photo} src={photoPreview} />
+      {!photo ? <div id={styles.spacer} /> : <img id={styles.photo} src={photoPreview} />}
       <div id={styles.tractor}>
         <div className={styles.inputContainer}>
           <label htmlFor="brand">Make</label>
