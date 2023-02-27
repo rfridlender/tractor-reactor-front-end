@@ -5,6 +5,8 @@ import * as authService from '../../services/authService'
 
 import styles from './SignupForm.module.scss'
 
+import defaultProfile from '../../assets/icons/profile.png'
+
 import { AuthFormProps } from '../../types/props'
 import { SignupFormData, PhotoFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'
@@ -20,9 +22,8 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
     password: '',
     passwordConf: '',
   })
-  const [photoData, setPhotoData] = useState<PhotoFormData>({
-    photo: null
-  })
+  const [photoData, setPhotoData] = useState<PhotoFormData>({ photo: null })
+  const [photoPreview, setPhotoPreview] = useState<string>('')
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     updateMessage('')
@@ -30,6 +31,12 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
   }
 
   const handleChangePhoto = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const reader = new FileReader()
+    if (evt.target.files) reader.readAsDataURL(evt.target.files[0])
+    reader.onload = () => {
+      const imageUrl = reader.result as string
+      setPhotoPreview(imageUrl)
+    }
     if (evt.target.files) setPhotoData({ photo: evt.target.files.item(0) })
   }
 
@@ -109,6 +116,7 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
         <label htmlFor="photo-upload">Upload Profile Photo</label>
         <div id={styles.photoUpload}>
           <label htmlFor="photo-upload" className={photoData.photo?.name && styles.active}>{!photoData.photo ? 'No file chosen' : photoData.photo.name}</label>
+          <img src={!photo ? defaultProfile : photoPreview} alt="Profile Picture" />
           <input
             type="file"
             id="photo-upload"
