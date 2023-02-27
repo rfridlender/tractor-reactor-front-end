@@ -1,0 +1,21 @@
+$color-1: #fefae0;
+$color-2: #dda15e;
+$color-3: #bc6c25;
+$color-4: #606c38;
+$color-5: #283618;
+
+.container {
+  width: 100%;
+  background-color: $color-5;
+  color: $color-1;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: .5rem;
+  overflow-x: visible;
+  box-shadow: 0 .125rem .25rem black;
+  > *:first-child {
+    border-bottom: 1px solid $color-4;
+  }
+}

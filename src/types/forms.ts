@@ -4,7 +4,7 @@
 
 /* ---------===== auth forms =====--------- */
 
-export interface NewPostFormData {
+export interface PostFormData {
   variety: string;
   brand: string;
   design: string;
@@ -13,7 +13,7 @@ export interface NewPostFormData {
   rating: number;
 }
 
-export type NewPostFormElements = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+export type PostFormElements = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
 
 export interface AddCommentFormData {
   content: string;

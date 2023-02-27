@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import * as postService from '../../services/postService'
 
-import styles from './NewPostForm.module.scss'
+import styles from './EditPostForm.module.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTractor } from '@fortawesome/free-solid-svg-icons'
@@ -13,10 +13,10 @@ import { PostFormData, PhotoFormData, PostFormElements } from '../../types/forms
 import { tractors } from '../../data/tractors'
 import { useQueryClient } from 'react-query'
 
-interface NewPostFormProps {
+interface EditPostFormProps {
 }
 
-const NewPostForm = (props: NewPostFormProps): JSX.Element => {
+const EditPostForm = (props: EditPostFormProps): JSX.Element => {
   const navigate = useNavigate()
 
   const queryClient = useQueryClient()
@@ -176,4 +176,4 @@ const NewPostForm = (props: NewPostFormProps): JSX.Element => {
   )
 }
 
-export default NewPostForm
+export default EditPostForm
