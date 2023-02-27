@@ -66,6 +66,7 @@ const NewPostForm = (props: NewPostFormProps): JSX.Element => {
     try {
       setIsSubmitted(true)
       await postService.create(formData, photoData)
+      queryClient.invalidateQueries({ queryKey: ['posts'] })
       navigate('/')
     } catch (err) {
       console.log(err)

@@ -11,7 +11,7 @@ import { faTractor } from '@fortawesome/free-solid-svg-icons'
 import { PostFormData, PhotoFormData, PostFormElements } from '../../types/forms'
 
 import { tractors } from '../../data/tractors'
-import { useQueryClient } from 'react-query'
+import { QueryCache, useQueryClient } from 'react-query'
 
 const EditPostForm = (): JSX.Element => {
   const navigate = useNavigate()
@@ -19,6 +19,15 @@ const EditPostForm = (): JSX.Element => {
   const { state } = useLocation()
 
   const queryClient = useQueryClient()
+
+  const queryCache = new QueryCache({
+    onError: error => {
+      console.log(error)
+    },
+    onSuccess: data => {
+      console.log(data)
+    }
+  })
 
   const [photoData, setPhotoData] = useState<PhotoFormData>({ photo: null })
   const [photoPreview, setPhotoPreview] = useState<string>(state.photo)
@@ -64,8 +73,9 @@ const EditPostForm = (): JSX.Element => {
     if(isSubmitted) return
     try {
       setIsSubmitted(true)
-      queryClient.invalidateQueries({ queryKey: ['posts'] })
+      queryCache.clear()
       await postService.update(formData, photoData, state.id)
+      queryClient.invalidateQueries({ queryKey: ['posts'] })
       navigate('/')
     } catch (err) {
       console.log(err)
@@ -76,7 +86,7 @@ const EditPostForm = (): JSX.Element => {
   const { variety, brand, design, horsepower, reaction, rating } = formData
   const { photo } = photoData
   const isFormInvalid = (): boolean => {
-    return !(variety && brand && design && horsepower && reaction && rating && photo)
+    return !(variety && brand && design && horsepower && reaction && rating)
   }
 
   const ratingOptions: [ 1, 2, 3, 4, 5 ] = [ 1, 2, 3, 4, 5 ]
@@ -88,7 +98,7 @@ const EditPostForm = (): JSX.Element => {
       className={styles.container}
     >
       <div id={styles.photoUpload}>
-        <label htmlFor="photo-upload" className={photoData.photo?.name && styles.active}>{!photoData.photo ? !state.photo ? 'Upload Post Photo' : 'Edit Post Photo' : photoData.photo.name}</label>
+        <label htmlFor="photo-upload" className={photoData.photo?.name && styles.active}>{!photoData.photo ? !photoPreview ? 'Upload Post Photo' : 'Edit Post Photo' : photoData.photo.name}</label>
         <input
           type="file"
           id="photo-upload"
@@ -100,7 +110,7 @@ const EditPostForm = (): JSX.Element => {
       <div id={styles.tractor}>
         <div className={styles.inputContainer}>
           <label htmlFor="brand">Make</label>
-          <select name="brand" id="brand" value={state.brand} onChange={handleChange} required>
+          <select name="brand" id="brand" value={brand} onChange={handleChange} required>
             {tractors.brands.map(brand => (
               <option key={brand} value={brand}>{brand}</option>
             ))}
@@ -122,7 +132,7 @@ const EditPostForm = (): JSX.Element => {
       <div id={styles.specs}>
         <div className={styles.inputContainer}>
           <label htmlFor="variety">Type</label>
-          <select name="variety" id="variety" value={state.variety} onChange={handleChange} required>
+          <select name="variety" id="variety" value={variety} onChange={handleChange} required>
             {tractors.types.map(type => (
               <option key={type} value={type}>{type}</option>
             ))}

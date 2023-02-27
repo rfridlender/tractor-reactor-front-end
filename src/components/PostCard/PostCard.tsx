@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTractor } from '@fortawesome/free-solid-svg-icons'
 
 import styles from './PostCard.module.scss'
+import { useQueryClient } from 'react-query'
 
 interface PostCardProps {
   post: Post;
@@ -21,9 +22,9 @@ interface PostCardProps {
 }
 
 const PostCard = (props: PostCardProps): JSX.Element => {
-  const { user, postRefs, handleDeletePost } = props
+  const { post, user, postRefs, handleDeletePost } = props
 
-  const [post, setPost] =useState<Post>(props.post)
+  const queryClient = useQueryClient()
   const [formData, setFormData] = useState<AddCommentFormData>({content: ''})
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,8 +34,8 @@ const PostCard = (props: PostCardProps): JSX.Element => {
   const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
     evt.preventDefault()
     try {
-      const newComment = await postService.addComment(formData, post.id)
-      setPost({...post, comments: [...post.comments, newComment]})
+      await postService.addComment(formData, post.id)
+      queryClient.invalidateQueries({ queryKey: ['posts'] })
       setFormData({content: ''})
     } catch (err) {
       console.log(err)
@@ -45,7 +46,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
     evt.preventDefault()
     try {
       await postService.deleteComment(post.id, commentId)
-      setPost({...post, comments: post.comments.filter((comment: Comment) => comment.id!== commentId)})
+      queryClient.invalidateQueries({ queryKey: ['posts'] })
     } catch (err) {
       console.log(err)
     }

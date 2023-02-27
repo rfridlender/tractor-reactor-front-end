@@ -30,7 +30,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
           <div id={styles.subnav}>
             <NavLink to="/"><FontAwesomeIcon icon={faHome} /></NavLink>
             <NavLink to="/posts/new"><FontAwesomeIcon icon={faPlus} /></NavLink>
-            <NavLink to="/"><img src={user.profile.photo ?? defaultProfile} alt={user.name} /></NavLink>
+            <NavLink to="/change-password"><img src={user.profile.photo ?? defaultProfile} alt={user.name} /></NavLink>
             <NavLink to="" onClick={handleLogout}><FontAwesomeIcon icon={faSignOut} /></NavLink>
           </div>
         :

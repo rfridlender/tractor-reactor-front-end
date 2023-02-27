@@ -16,11 +16,8 @@ interface LandingProps {
 const Landing = (props: LandingProps): JSX.Element => {
   const { user } = props
 
-  const queryClient = useQueryClient()
   const { data, error, isLoading, isError} = useQuery(['posts', user], postService.index)
 
-  console.log(data);
-  
   const postRefs = useRef({}) as MutableRefObject<any>
 
   const handleDeletePost = async (evt: React.MouseEvent, postId: number): Promise<void> => {
