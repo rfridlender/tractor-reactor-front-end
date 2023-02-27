@@ -52,6 +52,9 @@ $color-5: #283618;
         color: $color-1;
         font-weight: bold;
       }
+      p:nth-child(2) {
+        color: $color-2;
+      }
     }
      > p {
        width: 100%;

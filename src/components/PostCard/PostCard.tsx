@@ -17,10 +17,11 @@ interface PostCardProps {
   post: Post;
   user: User | null;
   postRefs: any;
+  handleDeletePost: (evt: React.MouseEvent, postId: number) => void
 }
 
 const PostCard = (props: PostCardProps): JSX.Element => {
-  const { user, postRefs } = props
+  const { user, postRefs, handleDeletePost } = props
 
   const [post, setPost] =useState<Post>(props.post)
   const [formData, setFormData] = useState<AddCommentFormData>({content: ''})
@@ -54,7 +55,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
   
   return (
     <article className={styles.container} ref={(el) => postRefs.current[post.id] = el}>
-      {<AuthorPostHeader post={post} />}
+      {<AuthorPostHeader post={post} handleDeletePost={handleDeletePost} user={user} />}
       {post.photo && <img id={styles.photo} src={post.photo} alt={`${post.author.name}'s ${post.brand} Tractor`} />}
       <div id={styles.tractor}>
         <div>{post.brand}</div>

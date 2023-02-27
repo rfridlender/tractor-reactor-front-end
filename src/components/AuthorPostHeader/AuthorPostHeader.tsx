@@ -5,15 +5,20 @@ import defaultPhoto from '../../assets/icons/profile.png'
 
 import translateDate from '../../helpers/translateDate';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRemove } from '@fortawesome/free-solid-svg-icons'
+import { MdEdit } from 'react-icons/md'
+
 interface AuthorPostHeaderProps {
   post?: Post;
-  user?: User;
+  handleDeletePost?: (evt: React.MouseEvent, postId: number) => void;
+  user?: User | null;
 }
 
 const AuthorPostHeader = (props: AuthorPostHeaderProps) => {
-  const { post, user } = props
+  const { post, handleDeletePost, user } = props
 
-  if (post) {
+  if (post && handleDeletePost) {
     const createdAtAgo = translateDate(post.createdAt)
 
     return (
@@ -22,7 +27,17 @@ const AuthorPostHeader = (props: AuthorPostHeaderProps) => {
           <img src={post.author.photo ? post.author.photo : defaultPhoto} alt={post.author.name} />
           <div>{post.author.name}</div>
         </div>
-        <div>{createdAtAgo}</div>
+        <div id={styles.optionsContainer}>
+          <div>{createdAtAgo}</div>
+          {user?.profile.id === post.authorId &&
+            <>
+              <button><MdEdit /></button>
+              <button onClick={(evt) => handleDeletePost(evt, post.id)}>
+                <FontAwesomeIcon icon={faRemove} />
+              </button>
+            </>
+          }
+        </div>
       </header>
     )
   } else {

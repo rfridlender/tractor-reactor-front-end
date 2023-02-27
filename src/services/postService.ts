@@ -36,6 +36,18 @@ async function create(formData: NewPostFormData, photoFormData: PhotoFormData) {
   }
 }
 
+async function deletePost(postId: number): Promise<number> {
+  try {
+    const res = await fetch(`${BASE_URL}/${postId}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': `Bearer ${tokenService.getToken()}` }
+    })
+    return await res.json()
+  } catch (error) {
+    throw(error)
+  }
+}
+
 async function addPhoto(photoData: FormData, postId: number): Promise<string> {
   try {
     const res = await fetch(`${BASE_URL}/${postId}/add-photo`, {
@@ -79,4 +91,4 @@ async function deleteComment(postId: number, commentId: number): Promise<number>
   }
 }
 
-export { index, create, addPhoto, addComment, deleteComment }
+export { index, create, deletePost as delete, addPhoto, addComment, deleteComment }

@@ -11,12 +11,15 @@ import { faTractor } from '@fortawesome/free-solid-svg-icons'
 import { NewPostFormData, PhotoFormData, NewPostFormElements } from '../../types/forms'
 
 import { tractors } from '../../data/tractors'
+import { useQueryClient } from 'react-query'
 
 interface NewPostFormProps {
 }
 
 const NewPostForm = (props: NewPostFormProps): JSX.Element => {
   const navigate = useNavigate()
+
+  const queryClient = useQueryClient()
 
   const [photoData, setPhotoData] = useState<PhotoFormData>({
     photo: null
@@ -61,12 +64,11 @@ const NewPostForm = (props: NewPostFormProps): JSX.Element => {
 
   const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
     evt.preventDefault()
-    console.log(formData);
-    console.log(photoData);
     if(isSubmitted) return
     try {
       setIsSubmitted(true)
       await postService.create(formData, photoData)
+      queryClient.invalidateQueries({ queryKey: ['profiles']})
       navigate('/')
     } catch (err) {
       console.log(err)
