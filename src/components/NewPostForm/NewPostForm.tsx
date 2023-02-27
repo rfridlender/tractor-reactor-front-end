@@ -88,85 +88,85 @@ const NewPostForm = (props: NewPostFormProps): JSX.Element => {
       onSubmit={handleSubmit}
       className={styles.container}
     >
-      <div className={styles.inputContainer}>
-        <label htmlFor="photo-upload">Upload Profile Photo</label>
-        <div id={styles.photoUpload}>
-          <label htmlFor="photo-upload" className={photoData.photo?.name && styles.active}>{!photoData.photo ? 'No file chosen' : photoData.photo.name}</label>
+      <div id={styles.photoUpload}>
+        <label htmlFor="photo-upload" className={photoData.photo?.name && styles.active}>{!photoData.photo ? 'Upload Post Photo' : photoData.photo.name}</label>
+        <input
+          type="file"
+          id="photo-upload"
+          name="photo"
+          onChange={handleChangePhoto}
+        />
+      </div>
+      <img id={styles.photo} src={photoPreview} />
+      <div id={styles.tractor}>
+        <div className={styles.inputContainer}>
+          <label htmlFor="brand">Make</label>
+          <select name="brand" id="brand" onChange={handleChange} required>
+            {tractors.brands.map(brand => (
+              <option key={brand} value={brand}>{brand}</option>
+            ))}
+          </select>
+        </div>
+        <div className={styles.inputContainer}>
+          <label htmlFor="design">Model</label>
           <input
-            type="file"
-            id="photo-upload"
-            name="photo"
-            onChange={handleChangePhoto}
+            type="text"
+            className={styles.smallInput}
+            id="design"
+            value={design}
+            name="design"
+            onChange={handleChange}
+            placeholder="X000"
           />
         </div>
       </div>
-      <img id={styles.photo} src={photoPreview} />
-      <div className={styles.inputContainer}>
-        <label htmlFor="brand">Make:</label>
-        <select name="brand" id="brand" onChange={handleChange} required>
-          {tractors.brands.map(brand => (
-            <option key={brand} value={brand}>{brand}</option>
-          ))}
-        </select>
-      </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor="design">Model:</label>
-        <input
-          type="text"
-          id="design"
-          value={design}
-          name="design"
-          onChange={handleChange}
-          placeholder="X000"
-        />
-      </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor="variety">Type:</label>
-        <select name="variety" id="variety" onChange={handleChange} required>
-          {tractors.types.map(type => (
-            <option key={type} value={type}>{type}</option>
-          ))}
-        </select>
-      </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor="confirm">Rating:</label>
-        <div id={styles.rating}>
-          {ratingOptions.map((ratingOption: number): JSX.Element => (
-            <FontAwesomeIcon
-              key={ratingOption}
-              icon={faTractor}
-              onClick={() => handleRating(ratingOption)}
-              onMouseOver={(evt) => handleHover(evt, ratingOption)}
-              onMouseLeave={(evt) => handleHover(evt, ratingOption)}
-              className={ratingOption <= (hover ?? rating) ? styles.rated : styles.unrated}
-            />
-          ))}
+      <div id={styles.specs}>
+        <div className={styles.inputContainer}>
+          <label htmlFor="variety">Type</label>
+          <select name="variety" id="variety" onChange={handleChange} required>
+            {tractors.types.map(type => (
+              <option key={type} value={type}>{type}</option>
+            ))}
+          </select>
+        </div>
+        <div className={styles.inputContainer}>
+          <label htmlFor="confirm">Rating</label>
+          <div id={styles.rating}>
+            {ratingOptions.map((ratingOption: number): JSX.Element => (
+              <FontAwesomeIcon
+                key={ratingOption}
+                icon={faTractor}
+                onClick={() => handleRating(ratingOption)}
+                onMouseOver={(evt) => handleHover(evt, ratingOption)}
+                onMouseLeave={(evt) => handleHover(evt, ratingOption)}
+                className={ratingOption <= (hover ?? rating) ? styles.rated : styles.unrated}
+              />
+            ))}
+          </div>
+        </div>
+        <div className={styles.inputContainer}>
+          <label htmlFor="horsepower">HP</label>
+          <input
+            type="number"
+            className={styles.smallInput}
+            id="horsepower"
+            value={horsepower}
+            name="horsepower"
+            onChange={handleChange}
+            max="1000"
+          />
         </div>
       </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor="horsepower">HP:</label>
-        <input
-          type="number"
-          id="horsepower"
-          value={horsepower}
-          name="horsepower"
-          onChange={handleChange}
-          max="1000"
-        />
-      </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor="reaction">Reaction:</label>
-        <textarea
-          id="reaction"
-          value={reaction}
-          name="reaction"
-          onChange={handleChange}
-          placeholder="What is your reaction?"
-        />
-      </div>
+      <textarea
+        id="reaction"
+        value={reaction}
+        name="reaction"
+        onChange={handleChange}
+        placeholder="What is your reaction?"
+      />
       <div id={styles.buttonContainer}>
-        <button id={styles.NewPost} disabled={isFormInvalid() || isSubmitted} className={styles.button}>
-          {!isSubmitted ? "Sign Up" : "Sending..."}
+        <button id={styles.newPost} disabled={isFormInvalid() || isSubmitted} className={styles.button}>
+          {!isSubmitted ? "Post" : "Posting..."}
         </button>
         <button id={styles.cancel}><Link to="/">Cancel</Link></button>
       </div>

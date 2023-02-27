@@ -5,9 +5,11 @@ $color-4: #606c38;
 $color-5: #283618;
 
 .container {
+  width: calc(100% - 2rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 0;
   color: $color-2;
   border: none;
   #author {

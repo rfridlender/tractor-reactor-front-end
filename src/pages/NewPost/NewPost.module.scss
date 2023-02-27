@@ -14,50 +14,8 @@ $color-5: #283618;
   align-items: center;
   border-radius: .5rem;
   overflow-x: visible;
-  > * {
+  box-shadow: 0 .125rem .25rem black;
+  > *:first-child {
     border-bottom: 1px solid $color-4;
-    padding: 1rem 0;
-    width: calc(100% - 2rem);
-  }
-  > *:last-child {
-    border: none;
-  }
-  #photo {
-    padding: 0;
-    width: 100%;
-  }
-  #tractor, #specs {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 0;
-    div {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-  #tractor {
-    font-weight: bold;
-  }
-  #specs {
-    color: $color-2;
-    #rating {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: .125rem;
-      .rated {
-        color: $color-2;
-      }
-      .unrated {
-        color: $color-1;
-        opacity: .5;
-        -webkit-text-stroke: 2px $color-4;
-      }
-    }
   }
 }
