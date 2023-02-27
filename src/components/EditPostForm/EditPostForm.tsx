@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import * as postService from '../../services/postService'
 
@@ -13,25 +13,22 @@ import { PostFormData, PhotoFormData, PostFormElements } from '../../types/forms
 import { tractors } from '../../data/tractors'
 import { useQueryClient } from 'react-query'
 
-interface EditPostFormProps {
-}
-
-const EditPostForm = (props: EditPostFormProps): JSX.Element => {
+const EditPostForm = (): JSX.Element => {
   const navigate = useNavigate()
+
+  const { state } = useLocation()
 
   const queryClient = useQueryClient()
 
-  const [photoData, setPhotoData] = useState<PhotoFormData>({
-    photo: null
-  })
-  const [photoPreview, setPhotoPreview] = useState<string>('')
+  const [photoData, setPhotoData] = useState<PhotoFormData>({ photo: null })
+  const [photoPreview, setPhotoPreview] = useState<string>(state.photo)
   const [formData, setFormData] = useState<PostFormData>({
-    variety: 'Utility',
-    brand: 'John Deere',
-    design: '',
-    horsepower: 0,
-    reaction: '',
-    rating: 0,
+    variety: state.variety,
+    brand: state.brand,
+    design: state.design,
+    horsepower: state.horsepower,
+    reaction: state.reaction,
+    rating: state.rating,
   })
   const [hover, setHover] = useState<number | null>(null)
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -67,8 +64,8 @@ const EditPostForm = (props: EditPostFormProps): JSX.Element => {
     if(isSubmitted) return
     try {
       setIsSubmitted(true)
-      await postService.create(formData, photoData)
-      queryClient.invalidateQueries({ queryKey: ['profiles']})
+      queryClient.invalidateQueries({ queryKey: ['posts'] })
+      await postService.update(formData, photoData, state.id)
       navigate('/')
     } catch (err) {
       console.log(err)
@@ -91,7 +88,7 @@ const EditPostForm = (props: EditPostFormProps): JSX.Element => {
       className={styles.container}
     >
       <div id={styles.photoUpload}>
-        <label htmlFor="photo-upload" className={photoData.photo?.name && styles.active}>{!photoData.photo ? 'Upload Post Photo' : photoData.photo.name}</label>
+        <label htmlFor="photo-upload" className={photoData.photo?.name && styles.active}>{!photoData.photo ? !state.photo ? 'Upload Post Photo' : 'Edit Post Photo' : photoData.photo.name}</label>
         <input
           type="file"
           id="photo-upload"
@@ -99,11 +96,11 @@ const EditPostForm = (props: EditPostFormProps): JSX.Element => {
           onChange={handleChangePhoto}
         />
       </div>
-      {!photo ? <div id={styles.spacer} /> : <img id={styles.photo} src={photoPreview} />}
+      {!photoPreview ? <div id={styles.spacer} /> : <img id={styles.photo} src={photoPreview} />}
       <div id={styles.tractor}>
         <div className={styles.inputContainer}>
           <label htmlFor="brand">Make</label>
-          <select name="brand" id="brand" onChange={handleChange} required>
+          <select name="brand" id="brand" value={state.brand} onChange={handleChange} required>
             {tractors.brands.map(brand => (
               <option key={brand} value={brand}>{brand}</option>
             ))}
@@ -125,7 +122,7 @@ const EditPostForm = (props: EditPostFormProps): JSX.Element => {
       <div id={styles.specs}>
         <div className={styles.inputContainer}>
           <label htmlFor="variety">Type</label>
-          <select name="variety" id="variety" onChange={handleChange} required>
+          <select name="variety" id="variety" value={state.variety} onChange={handleChange} required>
             {tractors.types.map(type => (
               <option key={type} value={type}>{type}</option>
             ))}
@@ -168,7 +165,7 @@ const EditPostForm = (props: EditPostFormProps): JSX.Element => {
       />
       <div id={styles.buttonContainer}>
         <button id={styles.newPost} disabled={isFormInvalid() || isSubmitted} className={styles.button}>
-          {!isSubmitted ? "Post" : "Posting..."}
+          {!isSubmitted ? "Update" : "Updating..."}
         </button>
         <button id={styles.cancel}><Link to="/">Cancel</Link></button>
       </div>

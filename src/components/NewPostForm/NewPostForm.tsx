@@ -21,9 +21,7 @@ const NewPostForm = (props: NewPostFormProps): JSX.Element => {
 
   const queryClient = useQueryClient()
 
-  const [photoData, setPhotoData] = useState<PhotoFormData>({
-    photo: null
-  })
+  const [photoData, setPhotoData] = useState<PhotoFormData>({ photo: null })
   const [photoPreview, setPhotoPreview] = useState<string>('')
   const [formData, setFormData] = useState<PostFormData>({
     variety: 'Utility',
@@ -68,7 +66,6 @@ const NewPostForm = (props: NewPostFormProps): JSX.Element => {
     try {
       setIsSubmitted(true)
       await postService.create(formData, photoData)
-      queryClient.invalidateQueries({ queryKey: ['profiles']})
       navigate('/')
     } catch (err) {
       console.log(err)

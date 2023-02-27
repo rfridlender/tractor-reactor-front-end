@@ -6,9 +6,9 @@ import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import NewPost from './pages/NewPost/NewPost'
+import EditPost from './pages/EditPost/EditPost'
 
 import NavBar from './components/NavBar/NavBar'
-import SideBar from './components/SideBar/SideBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 import * as authService from './services/authService'
@@ -40,6 +40,11 @@ function App(): JSX.Element {
         <Route path="/posts/new" element={
           <ProtectedRoute user={user}>
             {user && <NewPost user={user} />}
+          </ProtectedRoute>
+        } />
+        <Route path="/posts/:postId/edit" element={
+          <ProtectedRoute user={user}>
+            {user && <EditPost user={user} />}
           </ProtectedRoute>
         } />
         <Route path="/change-password" element={

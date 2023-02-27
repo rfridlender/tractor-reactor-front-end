@@ -50,10 +50,10 @@ $color-5: #283618;
       align-items: center;
       cursor: pointer;
       background-color: $color-4;
-      color: $color-1;
       font-size: 1.5rem;
       svg {
         pointer-events: none;
+        color: $color-1;
         path {
           pointer-events: none;
         }

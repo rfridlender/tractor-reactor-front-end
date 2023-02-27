@@ -8,6 +8,7 @@ import translateDate from '../../helpers/translateDate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRemove } from '@fortawesome/free-solid-svg-icons'
 import { MdEdit } from 'react-icons/md'
+import { Link } from 'react-router-dom';
 
 interface AuthorPostHeaderProps {
   post?: Post;
@@ -31,7 +32,11 @@ const AuthorPostHeader = (props: AuthorPostHeaderProps) => {
           <div>{createdAtAgo}</div>
           {user?.profile.id === post.authorId &&
             <>
-              <button><MdEdit /></button>
+              <button>
+                <Link to={`/posts/${post.id}/edit`} state={post}>
+                  <MdEdit />
+                </Link>
+              </button>
               <button onClick={(evt) => handleDeletePost(evt, post.id)}>
                 <FontAwesomeIcon icon={faRemove} />
               </button>

@@ -1,6 +1,6 @@
 import { Post, Comment } from '../types/models'
 
-import { AddCommentFormData, NewPostFormData, PhotoFormData } from '../types/forms'
+import { AddCommentFormData, PostFormData, PhotoFormData } from '../types/forms'
 
 import * as tokenService from './tokenService'
 
@@ -15,7 +15,7 @@ async function index(): Promise<Post[]> {
   }
 }
 
-async function create(formData: NewPostFormData, photoFormData: PhotoFormData) {
+async function create(formData: PostFormData, photoFormData: PhotoFormData) {
   try {
     const res = await fetch(BASE_URL, {
       method: 'POST',
@@ -30,6 +30,27 @@ async function create(formData: NewPostFormData, photoFormData: PhotoFormData) {
       const photoData = new FormData()
       photoData.append('photo', photoFormData.photo)
       await addPhoto(photoData, post.id)
+    }
+  } catch (error) {
+    throw(error)
+  }
+}
+
+async function update(formData: PostFormData, photoFormData: PhotoFormData, postId: number) {
+  try {
+    const res = await fetch(`${BASE_URL}/${postId}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData),
+    })
+    const post = await res.json()
+    if (photoFormData.photo) {
+      const photoData = new FormData()
+      photoData.append('photo', photoFormData.photo)
+      await addPhoto(photoData, post[1][0].id)
     }
   } catch (error) {
     throw(error)
@@ -91,4 +112,4 @@ async function deleteComment(postId: number, commentId: number): Promise<number>
   }
 }
 
-export { index, create, deletePost as delete, addPhoto, addComment, deleteComment }
+export { index, create, update, deletePost as delete, addPhoto, addComment, deleteComment }
