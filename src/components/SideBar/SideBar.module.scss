@@ -63,5 +63,45 @@ $color-5: #283618;
   flex-flow: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 1rem;
+  padding: 0 1rem;
+  font-size: 1.25rem;
+  header {
+    border-bottom: 1px solid $color-4;
+    padding: 1rem 0;
+    width: 100%;
+    h1, h2 {
+      font-weight: 400;
+      font-size: 1.5rem;
+      span {
+        font-family: 'Arvo', serif;
+        text-shadow: .25rem .25rem .75rem black;
+        color: $color-2;
+      }
+    }
+  }
+  p {
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px solid $color-4;
+    span {
+      font-family: 'Arvo', serif;
+      text-shadow: .25rem .25rem .75rem black;
+      color: $color-2;
+    }
+  }
+  p:last-child {
+    border: none;
+  }
+  footer {
+    padding: 1rem 0;
+    h1, h2 {
+      font-weight: 400;
+      font-size: 1.5rem;
+      span {
+        font-family: 'Arvo', serif;
+        text-shadow: .25rem .25rem .75rem black;
+        color: $color-2;
+      }
+    }
+  }
 }

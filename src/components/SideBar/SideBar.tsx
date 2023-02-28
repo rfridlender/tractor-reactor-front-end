@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 import { Post, User } from '../../types/models'
 
@@ -18,6 +18,8 @@ export interface SideBarProps {
 const SideBar = (props: SideBarProps): JSX.Element => {
   const { posts, user, scrollPostIntoView } = props
   
+  const { pathname } = useLocation()
+
   if (posts && scrollPostIntoView) {
     return (
       <aside className={styles.landingContainer}>
@@ -31,18 +33,37 @@ const SideBar = (props: SideBarProps): JSX.Element => {
         ))}
       </aside>
     )
+  } else if (pathname === "/login") {
+    return (
+      <aside className={styles.loginContainer}>
+        <header>
+          <h2>Welcome back to</h2>
+          <h1><span>Tractor Reactor</span></h1>
+        </header>
+        <p>Keeping you up to date with the latest and greatest in tractor trends.</p>
+        <p>Need a new plow? Looking for some sweet tractor accessories? Want to stay on top of the hottest new tractor models?</p>
+        <footer>
+          <h1>Log into <span>Tractor Reactor</span> now!</h1>
+        </footer>
+      </aside>
+    )
   } else {
     return (
       <aside className={styles.loginContainer}>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis, ipsam. Dicta beatae recusandae asperiores voluptatibus, similique tempore nobis veritatis nemo! Dolores et assumenda quas sunt atque quo iure praesentium facere?</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis, ipsam. Dicta beatae recusandae asperiores voluptatibus, similique tempore nobis veritatis nemo! Dolores et assumenda quas sunt atque quo iure praesentium facere?</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis, ipsam. Dicta beatae recusandae asperiores voluptatibus, similique tempore nobis veritatis nemo! Dolores et assumenda quas sunt atque quo iure praesentium facere?</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis, ipsam. Dicta beatae recusandae asperiores voluptatibus, similique tempore nobis veritatis nemo! Dolores et assumenda quas sunt atque quo iure praesentium facere?</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis, ipsam. Dicta beatae recusandae asperiores voluptatibus, similique tempore nobis veritatis nemo! Dolores et assumenda quas sunt atque quo iure praesentium facere?</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis, ipsam. Dicta beatae recusandae asperiores voluptatibus, similique tempore nobis veritatis nemo! Dolores et assumenda quas sunt atque quo iure praesentium facere?</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis, ipsam. Dicta beatae recusandae asperiores voluptatibus, similique tempore nobis veritatis nemo! Dolores et assumenda quas sunt atque quo iure praesentium facere?</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis, ipsam. Dicta beatae recusandae asperiores voluptatibus, similique tempore nobis veritatis nemo! Dolores et assumenda quas sunt atque quo iure praesentium facere?</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis, ipsam. Dicta beatae recusandae asperiores voluptatibus, similique tempore nobis veritatis nemo! Dolores et assumenda quas sunt atque quo iure praesentium facere?</p>
+        <header>
+          <h2>Welcome to</h2>
+          <h1><span>Tractor Reactor</span></h1>
+        </header>
+        <p>
+          The app that lets <span>farmers</span> unleash their inner tractor fanatic without having to suffer the judgmental glares of their neighbors.
+        </p>
+        <p>
+          Because let's face it, there's no better feeling than posting endless pictures of your trusty John Deere on social media. And with <span>Tractor Reactor</span>, you can do just that.
+        </p>
+        <footer>
+          <h1>Join <span>Tractor Reactor</span></h1>
+          <h2>and start reacting now!</h2>
+        </footer>
       </aside>
     )
   }
