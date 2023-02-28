@@ -2,6 +2,8 @@ import styles from './Landing.module.scss'
 
 import { useState } from 'react'
 
+import video from '../../assets/video.mp4'
+
 import { User, Post } from '../../types/models'
 import { useQuery, useQueryClient } from 'react-query'
 
@@ -56,7 +58,21 @@ const Landing = (props: LandingProps): JSX.Element => {
   return (
     <main>
       <SideBar posts={posts} user={user} scrollPostIntoView={scrollPostIntoView} search={search} handleSearch={handleSearch} />
-      <section className={styles.container}>
+        <section className={styles.container}>
+          {!user && 
+            <div id={styles.video}>
+              <video src={video}
+                playsInline
+                autoPlay
+                muted
+                loop
+              />
+              <header>
+                <h1>Tractor Reactor</h1>
+                <h2>fuel your passion for tractors</h2>
+              </header>
+            </div>
+          }
         {posts?.map((post: Post) => (
           <PostCard key={post.id} post={post} user={user} postRefs={postRefs} handleDeletePost={handleDeletePost} />
         ))}

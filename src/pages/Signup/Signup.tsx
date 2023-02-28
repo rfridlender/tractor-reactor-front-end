@@ -21,7 +21,7 @@ const Signup = (props: SignupProps): JSX.Element => {
     <main>
       <SideBar />
       <section className={styles.container}>
-      <div id={styles.logo}>
+        <div id={styles.logo}>
           <div>Tractor</div>
           <img src={logo} alt="Tractor Reactor" />
           <div>Reactor</div>
