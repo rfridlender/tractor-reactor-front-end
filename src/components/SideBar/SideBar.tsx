@@ -8,16 +8,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass, } from '@fortawesome/free-solid-svg-icons'
 
 import PostPreviewCard from '../PostPreviewCard/PostPreviewCard'
+import { useState } from 'react'
 
 export interface SideBarProps {
   posts?: Post[];
   user?: User | null;
   scrollPostIntoView?: (postId: number) => void;
+  search?: string;
+  handleSearch?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SideBar = (props: SideBarProps): JSX.Element => {
-  const { posts, user, scrollPostIntoView } = props
-  
+  const { posts, user, scrollPostIntoView, search, handleSearch } = props
+
   const { pathname } = useLocation()
 
   if (posts && scrollPostIntoView) {
@@ -25,7 +28,7 @@ const SideBar = (props: SideBarProps): JSX.Element => {
       <aside className={styles.landingContainer}>
         <div id={styles.search}>
           <label htmlFor="search"><FontAwesomeIcon icon={faMagnifyingGlass} /></label>
-          <input type="search" id="search" placeholder="Search by author..." autoComplete="off" />
+          <input type="search" id="search" placeholder="Search by author..." autoComplete="off" onChange={handleSearch} value={search}/>
         </div>
         <h1>Posts</h1>
         {posts?.map((post: Post)=> (

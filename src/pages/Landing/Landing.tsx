@@ -1,5 +1,7 @@
 import styles from './Landing.module.scss'
 
+import { useState } from 'react'
+
 import { User, Post } from '../../types/models'
 import { useQuery, useQueryClient } from 'react-query'
 
@@ -20,8 +22,23 @@ const Landing = (props: LandingProps): JSX.Element => {
 
   const { data, error, isLoading, isError} = useQuery(['posts', user], postService.index)
 
+  const [search, setSearch] = useState('')
+
   const postRefs = useRef({}) as MutableRefObject<any>
 
+  const posts = data?.filter(post => {
+    return post.variety.toLowerCase().includes(search.toLowerCase()) ||
+    post.brand.toLowerCase().includes(search.toLowerCase()) ||
+    post.design.toLowerCase().includes(search.toLowerCase()) ||
+    post.author.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+  })
+  
+  const handleSearch = (evt: React.ChangeEvent<HTMLInputElement>): void => {
+    setSearch(evt.target.value)
+  }
+  
+  console.log(`POSTS:`, posts);
+  
   const handleDeletePost = async (evt: React.MouseEvent, postId: number): Promise<void> => {
     evt.preventDefault()
     try {
@@ -38,9 +55,9 @@ const Landing = (props: LandingProps): JSX.Element => {
 
   return (
     <main>
-      <SideBar posts={data} user={user} scrollPostIntoView={scrollPostIntoView} />
+      <SideBar posts={posts} user={user} scrollPostIntoView={scrollPostIntoView} search={search} handleSearch={handleSearch} />
       <section className={styles.container}>
-        {data?.map((post: Post) => (
+        {posts?.map((post: Post) => (
           <PostCard key={post.id} post={post} user={user} postRefs={postRefs} handleDeletePost={handleDeletePost} />
         ))}
       </section>
