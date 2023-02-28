@@ -9,9 +9,11 @@ import { faMagnifyingGlass, } from '@fortawesome/free-solid-svg-icons'
 
 import PostPreviewCard from '../PostPreviewCard/PostPreviewCard'
 import { useState } from 'react'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
 export interface SideBarProps {
   posts?: Post[];
+  isLoading?: boolean;
   user?: User | null;
   scrollPostIntoView?: (postId: number) => void;
   search?: string;
@@ -19,11 +21,17 @@ export interface SideBarProps {
 }
 
 const SideBar = (props: SideBarProps): JSX.Element => {
-  const { posts, user, scrollPostIntoView, search, handleSearch } = props
+  const { posts, isLoading, user, scrollPostIntoView, search, handleSearch } = props
 
   const { pathname } = useLocation()
 
-  if (posts && scrollPostIntoView) {
+  if (isLoading) {
+    return (
+      <aside className={styles.loading}>
+        <LoadingSpinner />
+      </aside>
+    )
+  } else if (posts && scrollPostIntoView) {
     return (
       <aside className={styles.landingContainer}>
         <div id={styles.search}>

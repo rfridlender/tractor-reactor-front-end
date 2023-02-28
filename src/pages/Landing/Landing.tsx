@@ -1,6 +1,6 @@
 import styles from './Landing.module.scss'
 
-import { useState } from 'react'
+import { useState, useRef, MutableRefObject } from 'react'
 
 import video from '../../assets/video.mp4'
 
@@ -11,7 +11,7 @@ import * as postService from '../../services/postService'
 
 import PostCard from '../../components/PostCard/PostCard'
 import SideBar from '../../components/SideBar/SideBar'
-import { MutableRefObject, useRef } from 'react'
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 
 interface LandingProps {
   user: User | null;
@@ -22,7 +22,7 @@ const Landing = (props: LandingProps): JSX.Element => {
 
   const queryClient = useQueryClient()
 
-  const { data, error, isLoading, isError} = useQuery(['posts', user], postService.index)
+  const { data, isLoading } = useQuery(['posts', user], postService.index)
 
   const [search, setSearch] = useState('')
 
@@ -38,9 +38,7 @@ const Landing = (props: LandingProps): JSX.Element => {
   const handleSearch = (evt: React.ChangeEvent<HTMLInputElement>): void => {
     setSearch(evt.target.value)
   }
-  
-  console.log(`POSTS:`, posts);
-  
+
   const handleDeletePost = async (evt: React.MouseEvent, postId: number): Promise<void> => {
     evt.preventDefault()
     try {
@@ -57,25 +55,31 @@ const Landing = (props: LandingProps): JSX.Element => {
 
   return (
     <main>
-      <SideBar posts={posts} user={user} scrollPostIntoView={scrollPostIntoView} search={search} handleSearch={handleSearch} />
-        <section className={styles.container}>
-          {!user && 
-            <div id={styles.video}>
-              <video src={video}
-                playsInline
-                autoPlay
-                muted
-                loop
-              />
-              <header>
-                <h1>Tractor Reactor</h1>
-                <h2>fuel your passion for tractors</h2>
-              </header>
-            </div>
+      <SideBar posts={posts} isLoading={isLoading} user={user} scrollPostIntoView={scrollPostIntoView} search={search} handleSearch={handleSearch} />
+        <section className={isLoading ? styles.loading : styles.container}>
+          {isLoading ?
+            <LoadingSpinner />
+            :
+            <>
+              {!user && 
+                <div id={styles.video}>
+                  <video src={video}
+                    playsInline
+                    autoPlay
+                    muted
+                    loop
+                    />
+                  <header>
+                    <h1>Tractor Reactor</h1>
+                    <h2>fuel your passion for tractors</h2>
+                  </header>
+                </div>
+              }
+              {posts?.map((post: Post) => (
+                <PostCard key={post.id} post={post} user={user} postRefs={postRefs} handleDeletePost={handleDeletePost} />
+              ))}
+            </>
           }
-        {posts?.map((post: Post) => (
-          <PostCard key={post.id} post={post} user={user} postRefs={postRefs} handleDeletePost={handleDeletePost} />
-        ))}
       </section>
     </main>
   )

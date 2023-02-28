@@ -86,3 +86,14 @@ $color-5: #283618;
   }
 }
 
+.loading {
+  width: 100%;
+  height: calc(100% - 2rem);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  > span {
+    box-shadow: none;
+  }
+}
