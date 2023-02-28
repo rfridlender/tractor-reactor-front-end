@@ -1,6 +1,6 @@
 import { Post, Comment } from '../types/models'
 
-import { AddCommentFormData, PostFormData, PhotoFormData } from '../types/forms'
+import { CommentFormData, PostFormData, PhotoFormData } from '../types/forms'
 
 import * as tokenService from './tokenService'
 
@@ -84,7 +84,7 @@ async function addPhoto(photoData: FormData, postId: number): Promise<string> {
   }
 }
 
-async function addComment(formData: AddCommentFormData, postId: number): Promise<Comment> {
+async function addComment(formData: CommentFormData, postId: number): Promise<Comment> {
   try {
     const res = await fetch(`${BASE_URL}/${postId}/comments`, {
       method: 'POST',
@@ -100,7 +100,7 @@ async function addComment(formData: AddCommentFormData, postId: number): Promise
   }
 }
 
-async function updateComment(formData: AddCommentFormData, postId: number, commentId: number): Promise<Comment> {
+async function updateComment(formData: CommentFormData, postId: number, commentId: number): Promise<Comment> {
   try {
     const res = await fetch(`${BASE_URL}/${postId}/comments/${commentId}`, {
       method: 'PUT',
