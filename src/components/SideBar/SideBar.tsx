@@ -28,7 +28,7 @@ const SideBar = (props: SideBarProps): JSX.Element => {
       <aside className={styles.landingContainer}>
         <div id={styles.search}>
           <label htmlFor="search"><FontAwesomeIcon icon={faMagnifyingGlass} /></label>
-          <input type="search" id="search" placeholder="Search by author..." autoComplete="off" onChange={handleSearch} value={search}/>
+          <input type="search" id="search" placeholder="Search..." autoComplete="off" onChange={handleSearch} value={search}/>
         </div>
         <h1>Posts</h1>
         {posts?.map((post: Post)=> (
@@ -36,9 +36,9 @@ const SideBar = (props: SideBarProps): JSX.Element => {
         ))}
       </aside>
     )
-  } else if (pathname === "/login") {
+  } else if (pathname === '/login') {
     return (
-      <aside className={styles.loginContainer}>
+      <aside className={styles.container}>
         <header>
           <h2>Welcome back to</h2>
           <h1><span>Tractor Reactor</span></h1>
@@ -50,9 +50,9 @@ const SideBar = (props: SideBarProps): JSX.Element => {
         </footer>
       </aside>
     )
-  } else {
+  } else if (pathname === '/signup') {
     return (
-      <aside className={styles.loginContainer}>
+      <aside className={styles.container}>
         <header>
           <h2>Welcome to</h2>
           <h1><span>Tractor Reactor</span></h1>
@@ -66,6 +66,42 @@ const SideBar = (props: SideBarProps): JSX.Element => {
         <footer>
           <h1>Join <span>Tractor Reactor</span></h1>
           <h2>and start reacting now!</h2>
+        </footer>
+      </aside>
+    )
+  } else if (pathname === '/change-password') {
+    return (
+      <aside className={styles.container}>
+        <header>
+          <h1>At <span>Tractor Reactor</span>,</h1>
+        </header>
+        <p>
+          <span>Security</span> is our utmost priority.
+        </p>
+        <p>
+          We believe in keeping all of your <span>tractor</span> related data safe and secure.
+        </p>
+        <footer>
+          <h1><span>Thank you</span></h1>
+          <h2>for believing the same.</h2>
+        </footer>
+      </aside>
+    )
+  } else {
+    return (
+      <aside className={styles.container}>
+        <header>
+          <h1>What <span>tractors</span> or <span>tractor-related</span> equipment are on your mind?</h1>
+        </header>
+        <p>
+          Share it with the <span>world</span>.
+        </p>
+        <p>
+          <span>Tractor Reactor</span> is devoted to fostering an enviroment free of scrutiny for <span>tractor fanatics</span>.
+        </p>
+        <footer>
+          <h1><span>Thank you</span></h1>
+          <h2>for making that possible.</h2>
         </footer>
       </aside>
     )
