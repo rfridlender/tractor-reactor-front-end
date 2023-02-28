@@ -1,4 +1,4 @@
-import { Post, User, Comment } from '../../types/models'
+import { Post, User, Comment, Profile } from '../../types/models'
 import { CommentFormData } from '../../types/forms'
 
 import styles from './CommentsList.module.scss'
@@ -7,8 +7,9 @@ import AddCommentForm from '../AddCommentForm/AddCommentForm'
 import CommentCard from '../CommentCard/CommentCard'
 
 interface CommentsListProps {
-  post: Post;
   user: User | null;
+  profile: Profile | null;
+  post: Post;
   formData: CommentFormData;
   handleChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   handleAddComment: (evt: React.FormEvent) => Promise<void>;
@@ -16,7 +17,7 @@ interface CommentsListProps {
 }
 
 const CommentsList = (props: CommentsListProps): JSX.Element => {
-  const { post, user, formData, handleChange, handleAddComment, handleDeleteComment } = props
+  const { user, profile, post, formData, handleChange, handleAddComment, handleDeleteComment } = props
 
   return (
     <section className={styles.container}>
@@ -27,7 +28,7 @@ const CommentsList = (props: CommentsListProps): JSX.Element => {
         :
         <article>No reactions yet...</article>
       }
-      {user && <AddCommentForm user={user} formData={formData} handleChange={handleChange} handleAddComment={handleAddComment}/>}
+      {user && profile && <AddCommentForm user={user} profile={profile} formData={formData} handleChange={handleChange} handleAddComment={handleAddComment}/>}
     </section>
   )
 }

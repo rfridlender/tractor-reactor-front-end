@@ -7,6 +7,7 @@
 export interface Post {
   id: number;
   variety: string;
+  year: number;
   brand: string;
   design: string;
   horsepower: number;

@@ -1,4 +1,4 @@
-import { Post, User } from '../../types/models'
+import { Post, User, Profile } from '../../types/models'
 import { CommentFormData } from '../../types/forms'
 
 import * as postService from '../../services/postService'
@@ -17,12 +17,13 @@ import { useQueryClient } from 'react-query'
 interface PostCardProps {
   post: Post;
   user: User | null;
+  profile: Profile | null;
   postRefs: any;
   handleDeletePost: (evt: React.MouseEvent, postId: number) => void
 }
 
 const PostCard = (props: PostCardProps): JSX.Element => {
-  const { post, user, postRefs, handleDeletePost } = props
+  const { post, user, profile, postRefs, handleDeletePost } = props
 
   const queryClient = useQueryClient()
   
@@ -60,6 +61,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
       {<AuthorPostHeader post={post} handleDeletePost={handleDeletePost} user={user} />}
       {post.photo && <img id={styles.photo} src={post.photo} alt={`${post.author.name}'s ${post.brand} Tractor`} />}
       <div id={styles.tractor}>
+        <div>{post.year}</div>
         <div>{post.brand}</div>
         <div>{post.design}</div>
       </div>
@@ -73,7 +75,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
         <div>{`${post.horsepower} HP`}</div>
       </div>
       <p>{post.reaction}</p>
-      <CommentsList post={post} user={user} formData={formData} handleChange={handleChange} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment} />
+      <CommentsList post={post} user={user} profile={profile} formData={formData} handleChange={handleChange} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment} />
     </article>
   )
 }

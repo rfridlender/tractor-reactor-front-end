@@ -33,6 +33,7 @@ const EditPostForm = (): JSX.Element => {
   const [photoPreview, setPhotoPreview] = useState<string>(state.photo)
   const [formData, setFormData] = useState<PostFormData>({
     variety: state.variety,
+    year: state.year,
     brand: state.brand,
     design: state.design,
     horsepower: state.horsepower,
@@ -83,10 +84,10 @@ const EditPostForm = (): JSX.Element => {
     }
   }
 
-  const { variety, brand, design, horsepower, reaction, rating } = formData
+  const { variety, year, brand, design, horsepower, reaction, rating } = formData
   const { photo } = photoData
   const isFormInvalid = (): boolean => {
-    return !(variety && brand && design && horsepower && reaction && rating)
+    return !(variety && year && brand && design && horsepower && reaction && rating)
   }
 
   const ratingOptions: [ 1, 2, 3, 4, 5 ] = [ 1, 2, 3, 4, 5 ]
@@ -109,6 +110,18 @@ const EditPostForm = (): JSX.Element => {
       {!photoPreview ? <div id={styles.spacer} /> : <img id={styles.photo} src={photoPreview} />}
       <div id={styles.tractor}>
         <div className={styles.inputContainer}>
+          <label htmlFor="year">Year</label>
+          <input
+            type="number"
+            id="year"
+            value={year}
+            name="year"
+            onChange={handleChange}
+            min="1900"
+            max="3000"
+          />
+        </div>
+        <div className={styles.inputContainer}>
           <label htmlFor="brand">Make</label>
           <select name="brand" id="brand" value={brand} onChange={handleChange} required>
             {tractors.brands.map(brand => (
@@ -120,7 +133,6 @@ const EditPostForm = (): JSX.Element => {
           <label htmlFor="design">Model</label>
           <input
             type="text"
-            className={styles.smallInput}
             id="design"
             value={design}
             name="design"
@@ -157,7 +169,6 @@ const EditPostForm = (): JSX.Element => {
           <label htmlFor="horsepower">HP</label>
           <input
             type="number"
-            className={styles.smallInput}
             id="horsepower"
             value={horsepower}
             name="horsepower"

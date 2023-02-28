@@ -2,7 +2,7 @@ import styles from './CommentCard.module.scss'
 
 import defaultPhoto from '../../assets/icons/profile.png'
 
-import { Comment, Post, User } from '../../types/models'
+import { Comment, Post, User, Profile } from '../../types/models'
 
 import { SlOptions } from 'react-icons/sl'
 import { TiCancel } from 'react-icons/ti'

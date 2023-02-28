@@ -4,7 +4,7 @@ import { useState, useRef, MutableRefObject } from 'react'
 
 import video from '../../assets/video.mp4'
 
-import { User, Post } from '../../types/models'
+import { User, Profile, Post } from '../../types/models'
 import { useQuery, useQueryClient } from 'react-query'
 
 import * as postService from '../../services/postService'
@@ -15,11 +15,12 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 
 interface LandingProps {
   user: User | null;
+  profile: Profile  | null;
 }
 
 const Landing = (props: LandingProps): JSX.Element => {
-  const { user } = props
-
+  const { user, profile } = props
+  
   const queryClient = useQueryClient()
 
   const { data, isLoading } = useQuery(['posts', user], postService.index)
@@ -61,7 +62,7 @@ const Landing = (props: LandingProps): JSX.Element => {
             <LoadingSpinner />
             :
             <>
-              {!user && 
+              {!user &&
                 <div id={styles.video}>
                   <video src={video}
                     playsInline
@@ -76,7 +77,7 @@ const Landing = (props: LandingProps): JSX.Element => {
                 </div>
               }
               {posts?.map((post: Post) => (
-                <PostCard key={post.id} post={post} user={user} postRefs={postRefs} handleDeletePost={handleDeletePost} />
+                <PostCard key={post.id} post={post} user={user} profile={profile} postRefs={postRefs} handleDeletePost={handleDeletePost} />
               ))}
             </>
           }

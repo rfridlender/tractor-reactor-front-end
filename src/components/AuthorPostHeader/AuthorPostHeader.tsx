@@ -1,4 +1,4 @@
-import { Post, User } from '../../types/models'
+import { Post, User, Profile } from '../../types/models'
 
 import { useState } from 'react'
 
@@ -14,13 +14,14 @@ import { MdEdit } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 
 interface AuthorPostHeaderProps {
+  user?: User | null;
+  profile?: Profile | null;
   post?: Post;
   handleDeletePost?: (evt: React.MouseEvent, postId: number) => void;
-  user?: User | null;
 }
 
 const AuthorPostHeader = (props: AuthorPostHeaderProps) => {
-  const { post, handleDeletePost, user } = props
+  const { user, profile, post, handleDeletePost } = props
 
   const [isOptionsOpen, setIsOptionsOpen] = useState(false)
 
@@ -55,7 +56,7 @@ const AuthorPostHeader = (props: AuthorPostHeaderProps) => {
     return (
       <header className={styles.container}>
         <div id={styles.author}>
-          <img src={user?.profile.photo ? user.profile.photo : defaultPhoto} alt={user?.name} />
+          <img src={profile?.photo ? profile.photo : defaultPhoto} alt={user?.name} />
           <div>{user?.name}</div>
         </div>
         <div>{createdNow}</div>

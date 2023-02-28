@@ -6,6 +6,7 @@
 
 export interface PostFormData {
   variety: string;
+  year: number;
   brand: string;
   design: string;
   horsepower: number;

@@ -23,12 +23,14 @@ $color-5: #283618;
     border-bottom: none;
   }
   .inputContainer {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid $color-4;
     border-radius: 2rem;
     label {
+      width: 40%;
       height: 2.5rem;
       display: flex;
       justify-content: center;
@@ -38,6 +40,7 @@ $color-5: #283618;
       background-color: $color-4;
     }
     input, select {
+      width: 100%;
       height: 2.5rem;
       font-size: 1rem;
       padding: 0 .75rem;
@@ -90,9 +93,9 @@ $color-5: #283618;
   }
   #tractor, #specs {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
     div {
       height: 100%;
       display: flex;
@@ -100,20 +103,9 @@ $color-5: #283618;
       align-items: center;
     }
   }
-  #tractor {
-    .inputContainer {
-      .smallInput {
-        width: 8rem;
-      }
-    }
-  }
   #specs {
-    .inputContainer {
-      .smallInput {
-        width: 6rem;
-      }
-    }
     #rating {
+      width: 100%;
       height: 2.5rem;
       display: flex;
       justify-content: center;
