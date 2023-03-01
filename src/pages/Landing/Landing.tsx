@@ -2,8 +2,6 @@ import styles from './Landing.module.scss'
 
 import { useState, useRef, MutableRefObject } from 'react'
 
-import video from '../../assets/video.mp4'
-
 import { User, Profile, Post } from '../../types/models'
 import { useQuery, useQueryClient } from 'react-query'
 
@@ -64,7 +62,7 @@ const Landing = (props: LandingProps): JSX.Element => {
             <>
               {!user &&
                 <div id={styles.video}>
-                  <video src={video}
+                  <video src={'https://res.cloudinary.com/drszg4bhr/video/upload/v1677636676/video_fz9ic3.mp4'}
                     playsInline
                     autoPlay
                     muted
