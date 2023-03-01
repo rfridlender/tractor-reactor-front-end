@@ -1,15 +1,11 @@
-import styles from './EditCommentForm.module.scss'
-
-import { useState } from 'react';
-
+import { useState } from 'react'
+import { useQueryClient } from 'react-query'
+import { Post, Comment } from '../../types/models'
+import { CommentFormData } from '../../types/forms'
 import * as postService from '../../services/postService'
 
+import styles from './EditCommentForm.module.scss'
 import { BiSave } from 'react-icons/bi'
-
-import { Post } from '../../types/models';
-import { CommentFormData } from '../../types/forms'
-import { Comment } from '../../types/models';
-import { useQueryClient } from 'react-query';
 
 interface EditCommentFormProps {
   post: Post;

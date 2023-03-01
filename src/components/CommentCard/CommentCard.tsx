@@ -1,18 +1,15 @@
-import styles from './CommentCard.module.scss'
-
-import defaultPhoto from '../../assets/icons/profile.png'
-
-import { Comment, Post, User, Profile } from '../../types/models'
-
-import { SlOptions } from 'react-icons/sl'
-import { TiCancel } from 'react-icons/ti'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRemove } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react'
+import { Comment, Post, User } from '../../types/models'
 import EditCommentForm from '../EditCommentForm/EditCommentForm'
-
 import translateDate from '../../helpers/translateDate'
 
-import { useState } from 'react'
+import styles from './CommentCard.module.scss'
+import defaultPhoto from '../../assets/icons/profile.png'
+import { SlOptions } from 'react-icons/sl'
+import { TiCancel } from 'react-icons/ti'
+
+
+
 
 interface CommentCardProps {
   user: User | null;

@@ -1,13 +1,11 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-
-import styles from './LoginForm.module.scss'
-
-import * as authService from '../../services/authService'
-
 import { AuthFormProps } from '../../types/props'
 import { LoginFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'
+import * as authService from '../../services/authService'
+
+import styles from './LoginForm.module.scss'
 
 const LoginForm = (props: AuthFormProps): JSX.Element => {
   const {updateMessage, handleAuthEvt} = props

@@ -1,8 +1,5 @@
-// npm modules
 import { ReactNode } from 'react'
 import { Navigate } from 'react-router-dom'
-
-// types
 import { User } from '../../types/models'
 
 interface ProtectedRouteProps {

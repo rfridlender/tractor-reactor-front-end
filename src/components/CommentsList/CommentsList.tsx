@@ -1,10 +1,9 @@
 import { Post, User, Comment, Profile } from '../../types/models'
 import { CommentFormData } from '../../types/forms'
-
-import styles from './CommentsList.module.scss'
-
 import AddCommentForm from '../AddCommentForm/AddCommentForm'
 import CommentCard from '../CommentCard/CommentCard'
+
+import styles from './CommentsList.module.scss'
 
 interface CommentsListProps {
   user: User | null;

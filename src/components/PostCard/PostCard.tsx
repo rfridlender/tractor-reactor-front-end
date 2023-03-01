@@ -1,18 +1,14 @@
+import { useState } from 'react'
+import { useQueryClient } from 'react-query'
 import { Post, User, Profile } from '../../types/models'
 import { CommentFormData } from '../../types/forms'
-
-import * as postService from '../../services/postService'
-
-import { useState } from 'react'
-
 import CommentsList from '../CommentsList/CommentsList'
 import AuthorPostHeader from '../AuthorPostHeader/AuthorPostHeader'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTractor } from '@fortawesome/free-solid-svg-icons'
+import * as postService from '../../services/postService'
 
 import styles from './PostCard.module.scss'
-import { useQueryClient } from 'react-query'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTractor } from '@fortawesome/free-solid-svg-icons'
 
 interface PostCardProps {
   post: Post;

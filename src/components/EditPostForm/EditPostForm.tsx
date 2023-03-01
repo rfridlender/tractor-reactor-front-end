@@ -1,17 +1,13 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-
+import { QueryCache, useQueryClient } from 'react-query'
+import { PostFormData, PhotoFormData, PostFormElements } from '../../types/forms'
 import * as postService from '../../services/postService'
+import { tractors } from '../../data/tractors'
 
 import styles from './EditPostForm.module.scss'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTractor } from '@fortawesome/free-solid-svg-icons'
-
-import { PostFormData, PhotoFormData, PostFormElements } from '../../types/forms'
-
-import { tractors } from '../../data/tractors'
-import { QueryCache, useQueryClient } from 'react-query'
 
 const EditPostForm = (): JSX.Element => {
   const navigate = useNavigate()

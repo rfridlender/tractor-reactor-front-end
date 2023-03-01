@@ -1,10 +1,9 @@
-import styles from './NewPost.module.scss'
-
 import { User, Profile } from '../../types/models'
-
 import SideBar from '../../components/SideBar/SideBar'
 import AuthorPostHeader from '../../components/AuthorPostHeader/AuthorPostHeader'
 import NewPostForm from '../../components/NewPostForm/NewPostForm'
+
+import styles from './NewPost.module.scss'
 
 interface NewPostProps {
   user: User;

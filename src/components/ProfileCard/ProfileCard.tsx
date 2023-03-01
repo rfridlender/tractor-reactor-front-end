@@ -1,6 +1,6 @@
-import defaultPic from '../../assets/icons/profile.png'
-
 import { Profile } from '../../types/models'
+
+import defaultPic from '../../assets/icons/profile.png'
 
 interface ProfileCardProps {
   profile: Profile;

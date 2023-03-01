@@ -1,10 +1,9 @@
-import styles from './EditPost.module.scss'
-
 import { User, Profile } from '../../types/models'
-
 import SideBar from '../../components/SideBar/SideBar'
 import AuthorPostHeader from '../../components/AuthorPostHeader/AuthorPostHeader'
 import EditPostForm from '../../components/EditPostForm/EditPostForm'
+
+import styles from './EditPost.module.scss'
 
 interface EditPostProps {
   user: User;

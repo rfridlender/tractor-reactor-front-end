@@ -1,15 +1,12 @@
-import styles from './Landing.module.scss'
-
 import { useState, useRef, MutableRefObject } from 'react'
-
-import { User, Profile, Post } from '../../types/models'
 import { useQuery, useQueryClient } from 'react-query'
-
+import { User, Profile, Post } from '../../types/models'
 import * as postService from '../../services/postService'
-
 import PostCard from '../../components/PostCard/PostCard'
 import SideBar from '../../components/SideBar/SideBar'
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
+
+import styles from './Landing.module.scss'
 
 interface LandingProps {
   user: User | null;

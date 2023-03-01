@@ -1,15 +1,11 @@
-import { NavLink, useLocation } from 'react-router-dom'
-
+import { useLocation } from 'react-router-dom'
 import { Post, User } from '../../types/models'
+import PostPreviewCard from '../PostPreviewCard/PostPreviewCard'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
 import styles from './SideBar.module.scss'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass, } from '@fortawesome/free-solid-svg-icons'
-
-import PostPreviewCard from '../PostPreviewCard/PostPreviewCard'
-import { useState } from 'react'
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
 export interface SideBarProps {
   posts?: Post[];

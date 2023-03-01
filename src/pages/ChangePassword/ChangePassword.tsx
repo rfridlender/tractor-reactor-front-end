@@ -1,10 +1,8 @@
 import { useState } from 'react'
-
 import ChangePasswordForm from '../../components/ChangePasswordForm/ChangePasswordForm'
-import SideBar from '../../components/SideBar/SideBar';
+import SideBar from '../../components/SideBar/SideBar'
 
 import styles from './ChangePassword.module.scss'
-
 import logo from '../../assets/icons/logo.png'
 
 interface ChangePasswordProps {

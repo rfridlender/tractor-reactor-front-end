@@ -1,12 +1,9 @@
 import { useState } from 'react'
-
 import { Link } from 'react-router-dom';
-
 import LoginForm from '../../components/LoginForm/LoginForm'
-import SideBar from '../../components/SideBar/SideBar';
+import SideBar from '../../components/SideBar/SideBar'
 
 import styles from './Login.module.scss'
-
 import logo from '../../assets/icons/logo.png'
 
 interface LoginPageProps {

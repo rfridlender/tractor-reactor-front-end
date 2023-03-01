@@ -1,8 +1,7 @@
-import styles from './PostPreviewCard.module.scss'
-
-import defaultPhoto from '../../assets/icons/profile.png'
-
 import { Post, User } from '../../types/models'
+
+import styles from './PostPreviewCard.module.scss'
+import defaultPhoto from '../../assets/icons/profile.png'
 
 interface PostPreviewCardProps {
   post: Post;

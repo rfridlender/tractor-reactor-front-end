@@ -1,10 +1,8 @@
-import styles from './AddCommentForm.module.scss'
-
-import defaultPhoto from '../../assets/icons/profile.png'
-
 import { User, Profile } from '../../types/models'
 import { CommentFormData } from '../../types/forms'
 
+import styles from './AddCommentForm.module.scss'
+import defaultPhoto from '../../assets/icons/profile.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAdd } from '@fortawesome/free-solid-svg-icons'
 

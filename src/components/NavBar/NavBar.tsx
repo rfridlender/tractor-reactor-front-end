@@ -1,13 +1,9 @@
 import { NavLink } from 'react-router-dom'
-
 import { User, Profile } from '../../types/models'
 
 import styles from './NavBar.module.scss'
-
 import logo from '../../assets/icons/logo.png'
-
 import defaultProfile from '../../assets/icons/profile.png'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faPlus, faSignOut } from '@fortawesome/free-solid-svg-icons'
 

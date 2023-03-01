@@ -1,11 +1,9 @@
 import { useState } from 'react'
-
-import { Link } from 'react-router-dom';
-import SideBar from '../../components/SideBar/SideBar';
+import { Link } from 'react-router-dom'
+import SideBar from '../../components/SideBar/SideBar'
 import SignupForm from '../../components/SignupForm/SignupForm'
 
 import styles from './Signup.module.scss'
-
 import logo from '../../assets/icons/logo.png'
 
 interface SignupProps {

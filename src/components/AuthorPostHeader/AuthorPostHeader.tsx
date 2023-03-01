@@ -1,17 +1,11 @@
-import { Post, User, Profile } from '../../types/models'
-
 import { useState } from 'react'
+import { Post, User, Profile } from '../../types/models'
+import { Link } from 'react-router-dom'
+import translateDate from '../../helpers/translateDate'
 
 import styles from './AuthorPostHeader.module.scss'
 import defaultPhoto from '../../assets/icons/profile.png'
-
-import translateDate from '../../helpers/translateDate'
-
 import { SlOptions } from 'react-icons/sl'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRemove } from '@fortawesome/free-solid-svg-icons'
-import { MdEdit } from 'react-icons/md'
-import { Link } from 'react-router-dom'
 
 interface AuthorPostHeaderProps {
   user?: User | null;
