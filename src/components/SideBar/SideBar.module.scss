@@ -9,12 +9,17 @@ $color-5: #283618;
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   padding: 1rem 0;
   > * {
     border-bottom: 1px solid $color-4;
     padding: .5rem 0;
     width: calc(100% - 2rem);
+  }
+  > article {
+    width: 100%;
+    padding: 0;
+    border: none;
   }
   #search {
     height: 2rem;
