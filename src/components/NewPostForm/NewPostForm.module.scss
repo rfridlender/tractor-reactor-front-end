@@ -114,6 +114,9 @@ $color-5: #283618;
       padding: 0 .75rem;
       background-color: $color-1;
       border-radius: 0 2rem 2rem 0;
+      svg {
+        cursor: pointer;
+      }
       .rated {
         color: $color-2;
       }
