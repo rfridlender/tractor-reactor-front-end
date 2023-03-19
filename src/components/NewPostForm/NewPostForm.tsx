@@ -56,7 +56,6 @@ const NewPostForm = (): JSX.Element => {
 
   const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
     evt.preventDefault()
-    console.log(formData);
     if(isSubmitted) return
     try {
       setIsSubmitted(true)

@@ -21,7 +21,7 @@ const EditPostForm = (): JSX.Element => {
       console.log(error)
     },
     onSuccess: data => {
-      console.log(data)
+
     }
   })
 
