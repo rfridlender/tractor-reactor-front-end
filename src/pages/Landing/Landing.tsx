@@ -24,12 +24,12 @@ const Landing = (props: LandingProps): JSX.Element => {
 
   const postRefs = useRef({}) as MutableRefObject<any>
 
-  const posts = data?.filter(post => {
+  const posts = data ? data?.filter(post => {
     return post.variety.toLowerCase().includes(search.toLowerCase()) ||
     post.brand.toLowerCase().includes(search.toLowerCase()) ||
     post.design.toLowerCase().includes(search.toLowerCase()) ||
     post.author.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
-  })
+  }) : []
   
   const handleSearch = (evt: React.ChangeEvent<HTMLInputElement>): void => {
     setSearch(evt.target.value)
